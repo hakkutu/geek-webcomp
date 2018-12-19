@@ -1,0 +1,2 @@
+module Artists::DiscsHelper
+end

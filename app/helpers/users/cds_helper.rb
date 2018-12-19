@@ -1,0 +1,2 @@
+module Users::CdsHelper
+end

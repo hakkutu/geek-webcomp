@@ -1,0 +1,2 @@
+module Artists::SongsHelper
+end

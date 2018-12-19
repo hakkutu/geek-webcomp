@@ -1,0 +1,2 @@
+module Users::AristsHelper
+end

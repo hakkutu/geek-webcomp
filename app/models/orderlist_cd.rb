@@ -1,0 +1,2 @@
+class OrderlistCd < ApplicationRecord
+end
