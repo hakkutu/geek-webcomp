@@ -20,6 +20,6 @@ class Artists::CdsController < ApplicationController
 
 	end
 	def book_params
-      params.require(:artist).permit(:artist_id,:genre,:jacket_id,:price,:label,:stock,:status,discs_attributes: [:id,:cd_id,:disc_name],songs_attributes: [:id,:disc_id,:song_listen,:song_number,:song_name])
+      params.require(:artist).permit(:artist_id,:genre,:jacket,:price,:label,:stock,:status,discs_attributes: [:id,:cd_id,:disc_name],discs_attributes:[:disc_number,:disc_name],songs_attributes: [:id,:disc_id,:song_listen,:song_number,:song_name])
     end
 end
