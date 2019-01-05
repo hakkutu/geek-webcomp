@@ -1,0 +1,12 @@
+
+<h1>ユーザーのプロフィールページです</h1>
+
+ユーザー名<%= @user.name %>
+<%= link_to "edit", edit_users_user_path(@user) %>
+
+<h1>お気に入りアーティスト</h1>
+<% @user_favorites.each do |artist| %>
+
+<%= artist.name %>
+<% end %>
+<h1>購入履歴</h1>

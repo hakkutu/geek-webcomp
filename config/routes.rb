@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :cds,only:[:index,:show]
   namespace :users do
   	devise_for :users
-	  resources :users,only:[:edit,:show,:update,:destroy] do
+	  resources :users,only:[:edit,:show, :create, :update,:destroy] do
 	  	resources :carts,only:[:edit,:show,:update] do
 	  		resources :carts_cds,only:[:new,:create,:destroy]
 	  	end

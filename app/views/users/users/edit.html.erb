@@ -1,0 +1,28 @@
+<%= form_for(@user,  url:users_user_path ) do  |f| %>
+
+ <%= f.label  "名前（姓、名）" %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "名前（姓、名）" %>
+  </div>
+  <div class="field">
+    <%= f.label :"名前（カナ）" %><br />
+    <%= f.text_field :kano_name, autofocus: true, autocomplete: "名前（カナ）" %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  <div class="field">
+    <%= f.label :"郵便番号" %><br />
+    <%= f.text_field :postcode, autofocus: true, autocomplete: "郵便番号" %>
+  </div>
+  <div class="field">
+    <%= f.label :"住所" %><br/>
+    <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
+  </div>
+  <div class="field">
+    <%= f.label :"電話番号" %><br />
+    <%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
