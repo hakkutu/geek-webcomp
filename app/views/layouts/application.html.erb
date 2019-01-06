@@ -11,13 +11,17 @@
   <header>
     <h1>発掘.com</h1>
   <% if user_signed_in? %>
-  <%= link_to "マイページ" , users_user_path(current_user) %>
-  <%= link_to "カート", users_user_cart_path(:user_id => current_user, :id => current_user) %>
-  <%= link_to "logout", destroy_users_user_session_path(current_user) %>
+  <%= link_to "マイページ" , users_path(current_user) %>
+  <%= link_to "カート", users_cart_path(:user_id => current_user, :id => current_user) %>
+  <%= link_to "logout", destroy_user_session_path(current_user) %>
 <% elsif admin_signed_in? %>
-
+  <%= link_to "Users" , admins_users_path %>
+  <%= link_to "Artist", admins_artists_path  %>
+  <%= link_to "CD", root_path %>
+  <%= link_to "logout", root_path %>
 <% elsif artist_signed_in? %>
-
+  <%= link_to "マイページ", artist_path(current_artist) %>
+  <%= link_to "CD", artist_cds_path
 <% else %>
 <%= link_to "login", new_user_session_path %>
 <% end %>
