@@ -3,7 +3,7 @@
 
 ユーザー名<%= @user.name %>
 <%= link_to "edit", edit_users_user_path(@user) %>
-
+<%= current_users_user.name %>
 <h1>お気に入りアーティスト</h1>
 <% @user_favorites.each do |artist| %>
 

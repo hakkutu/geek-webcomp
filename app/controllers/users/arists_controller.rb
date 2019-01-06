@@ -1,2 +1,2 @@
-class Users::AristsController < ApplicationController
+class AristsController < ApplicationController
 end

@@ -8,7 +8,20 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <header>
+    <h1>発掘.com</h1>
+  <% if user_signed_in? %>
+  <%= link_to "マイページ" , users_user_path(current_user) %>
+  <%= link_to "カート", users_user_cart_path(:user_id => current_user, :id => current_user) %>
+  <%= link_to "logout", destroy_users_user_session_path(current_user) %>
+<% elsif admin_signed_in? %>
 
+<% elsif artist_signed_in? %>
+
+<% else %>
+<%= link_to "login", new_user_session_path %>
+<% end %>
+</header>
   <body>
     <%= yield %>
   </body>
