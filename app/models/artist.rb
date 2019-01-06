@@ -5,7 +5,8 @@ class Artist < ApplicationRecord
          :recoverable, :rememberable, :validatable
  has_many :users,through: :artist_favorites
  has_many :cds,through: :artist_comments
- has_many :artists
+ has_many :cds
  has_many :artist_favorites
  has_many :artist_comments
+ attachment :image
 end

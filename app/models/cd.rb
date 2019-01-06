@@ -11,5 +11,7 @@ class Cd < ApplicationRecord
 	has_many :user_comments
 	has_many :artist_comments
 	has_many :orderlist_cds
+	has_many :songs
+	accepts_nested_attributes_for :discs, reject_if: :all_blank, allow_destroy: true
 end
 

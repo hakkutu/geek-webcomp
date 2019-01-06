@@ -11,5 +11,6 @@ has_many :cds,through: :cart_cds
 has_many :orderlists
 has_many :user_comments
 has_many :cd_favorites
+attachment :image
 end
 

@@ -1,0 +1,2 @@
+module Aritsts::ApplicationHelper
+end

@@ -1,28 +1,26 @@
 <div class="cds">
-<%=form.fields_for do |f| %>
-<h1>CD情報</h1>
-<h2>CDの名前</h2>
-<%=f.text_field :cd_name %>
-<h2>ジャンル</h2>
-<%=f.text_field :genre %>
-<h2>ジャケットの写真</h2>
-<%=f.attachment_image_tag cd,:jacket,:fill,100,100,fallback:"no_image.jpg"%>
-<h2>値段</h2>
-<%=f.text_field :price %>
-<h2>レーベル名</h2>
-<%=f.text_field :label %>
-<h2>個数</h2>
-<%=f.text_field,:stock%>
-<div class="nest-feild-discs">
-<h1>Disc情報</h1>
-<h2>disc名</h2>
-<%=f.text_field :disc_name %>
-</div>
-<h1>song情報</h1>
-<h2>songの登録数</h2>
-<%= select_tag :song_number, options_for_select((1..23).to_a) %>
-<%=f.text_field :song_name %>
-
-<%=f.submit %>
-<% end %>
+	<%#=fields_for :cds do |f| %>
+	<%=form_for(@cd) do |f| %>
+	<h1>CD情報</h1>
+	<h2>CDの名前</h2>
+	<%=f.text_field :cd_name %>
+	<h2>ジャンル</h2>
+	<%=f.text_field :genre %>
+	<h2>ジャケットの写真</h2>
+	<%=f.attachment_field :jacket %>
+	<h2>値段</h2>
+	<%=f.text_field :price %>
+	<h2>レーベル名</h2>
+	<%=f.text_field :label %>
+	<h2>個数</h2>
+	<%=f.text_field :stock%>
+	<h1>Disc情報</h1>
+	<div class="discs">
+	<%=f.fields_for :discs do |disc|%>
+		<div><%= render "disc_fields", f: disc %></div>
+	<%end%>
+	</div>
+	<div><%= link_to_add_association "discを追加",f,:discs %></div>
+	<h2><%=f.submit %></h2>
+	<% end %>
 </div>
