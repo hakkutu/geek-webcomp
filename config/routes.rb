@@ -32,6 +32,7 @@ devise_for :users, controllers: {
     resources :artists,only:[:show,:edit,:update,:destroy]
 
   namespace :artists do
+    resources :artists,only:[:show,:edit,:update,:destroy]
   	resources :cds,only:[:index, :new,:create,:show,:edit,:destroy,:update]
   	resources :artist_comments,only:[:edit,:destroy,:update]
   	resources :songs,only:[:edit,:destroy]
