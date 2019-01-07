@@ -1,2 +1,17 @@
-class Artists::ArtistsController < ApplicationController
+class Artists::ArtistsController < Artists::ApplicationController
+	def edit
+		@artist=Artist.find(params[:id])
+	end
+	def update
+		@artist=Artist.find(params[:id])
+		@artist.update(artist_param)
+		redirect_to artists_artist_path
+	end
+
+	def show
+		@artist=Artist.find(params[:id])
+	end
+def artist_params
+      params.require(:artist).permit(:iamge, :name,:email,:postcode,:address,:phone_number,:imtoduvtion)
+    end
 end

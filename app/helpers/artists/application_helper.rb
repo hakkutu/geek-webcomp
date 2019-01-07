@@ -1,0 +1,2 @@
+module Artists::ApplicationHelper
+end
