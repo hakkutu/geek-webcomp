@@ -1,2 +1,2 @@
-class Artists::ArtistCommentsController < Artists::ApplicationController
+class Artists::ArtistCommentsController < ApplicationController
 end

@@ -1,4 +1,4 @@
-class Artists::ArtistsController < Artists::ApplicationController
+class Artists::ArtistsController < ApplicationController
 	def edit
 		@artist=Artist.find(params[:id])
 	end

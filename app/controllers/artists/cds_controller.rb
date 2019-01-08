@@ -1,4 +1,4 @@
-	class Artists::CdsController < Artists::ApplicationController
+	class Artists::CdsController < ApplicationController
 		def new
 			@cd=Cd.new
 			@disc=@cd.discs.build

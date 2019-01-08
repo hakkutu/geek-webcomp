@@ -1,2 +1,2 @@
-class Artists::DiscsController < Artists::ApplicationController
+class Artists::DiscsController < ApplicationController
 end
