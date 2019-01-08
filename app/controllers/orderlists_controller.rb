@@ -1,2 +1,4 @@
-class Users::OrderlistsController < ApplicationController
+class OrderlistsController < ApplicationController
+  def create
+  end
 end

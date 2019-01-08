@@ -1,8 +1,7 @@
 class CdsController < ApplicationController
-	def index
-		@cds=Cd.all
-	end
-	def show
-		@cd=Cd.find(params[:id])
-	end
+  def index
+  end
+
+  def show
+  end
 end

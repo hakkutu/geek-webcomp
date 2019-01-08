@@ -1,2 +1,7 @@
-class Users::CdFavoritesController < ApplicationController
+class CdFavoritesController < ApplicationController
+  def create
+  end
+
+  def destroy
+  end
 end
