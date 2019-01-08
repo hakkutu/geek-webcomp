@@ -1,2 +1,2 @@
-class Users::ArtistFavoritesController < ApplicationController
+class ArtistFavoritesController < ApplicationController
 end
