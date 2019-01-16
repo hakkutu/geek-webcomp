@@ -25,9 +25,9 @@ devise_for :admins, controllers: {
   registrations: 'admins/registrations'
 }
 devise_for :artists, controllers: {
-  sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
+  sessions:      'artists/sessions',
+  passwords:     'artists/passwords',
+  registrations: 'artists/registrations'
 }
 devise_for :users, controllers: {
   sessions:      'users/sessions',
