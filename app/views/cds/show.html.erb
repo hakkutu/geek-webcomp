@@ -1,2 +1,27 @@
-<h1>Cds#show</h1>
-<p>Find me in app/views/cds/show.html.erb</p>
+
+<%= @cd.cd_name %>
+<%= @cd.price %>
+<%= @cd.price %>
+<%= @cd.artist_id %>
+
+<% @discs.each do |disc| %>
+<%= disc.disc_name %>
+<% @songs.each do |song| %>
+<%= song.song_name %>
+
+<% end %>
+<% end %>
+
+<% @user_comments.each do |user_comment| %>
+
+<%= user_comment.name %>
+<%= user_comment.body %>
+
+<% end %>
+
+<%= form_for[@cd, @user_comment] do |f| %>
+	<%= f.textarea :body %>
+
+	<%= f.submit "コメントを投稿する" %>
+
+	<% end %>
