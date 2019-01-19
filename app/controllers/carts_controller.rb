@@ -3,4 +3,3 @@ class CartsController < ApplicationController
     @cart = current_user.cart
   end
 end
-
