@@ -1,10 +1,5 @@
 class CartsController < ApplicationController
   def show
-  end
-
-  def edit
-  end
-
-  def update
+    @cart = current_user.cart
   end
 end
