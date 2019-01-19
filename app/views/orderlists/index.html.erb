@@ -1,0 +1,19 @@
+<h1>履歴</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orderlists.each do |orderlist| %>
+    <tr>
+      <td></td>
+      <td><%= link_to book.title, book_path(book) %></td>
+      <td><%= book.body %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
