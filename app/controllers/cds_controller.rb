@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 class CdsController < ApplicationController
   def index
   	@cds = Cd.all
@@ -14,4 +12,3 @@ class CdsController < ApplicationController
 
   end
 end
->>>>>>> master
