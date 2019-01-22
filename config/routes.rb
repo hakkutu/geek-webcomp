@@ -1,39 +1,21 @@
 Rails.application.routes.draw do
-
-  get 'cds/index'
-  get 'cds/show'
-  get 'artists/show'
-  get 'users/edit'
-  get 'users/show'
-  get 'users/update'
-  get 'users/destroy'
-  get 'orderlist_cds/create'
-  get 'orderlists/create'
-  get 'cd_favorites/create'
-  get 'cd_favorites/destroy'
-  get 'artist_favorites/create'
-  get 'artist_favorites/destroy'
-  get 'carts/show'
-  get 'carts/edit'
-  get 'carts/update'
-  get 'cart_cds/new'
-  get 'cart_cds/create'
-  get 'cart_cds/destroy'
-devise_for :admins, controllers: {
-  sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
-}
-devise_for :artists, controllers: {
-  sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
-}
 devise_for :users, controllers: {
   sessions:      'users/sessions',
   passwords:     'users/passwords',
   registrations: 'users/registrations'
 }
+devise_for :artists, controllers: {
+  sessions:      'artists/sessions',
+  passwords:     'artists/passwords',
+  registrations: 'artists/registrations'
+}
+
+devise_for :admins, controllers: {
+  sessions:      'admins/sessions',
+  passwords:     'admins/passwords',
+  registrations: 'admins/registrations'
+}
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "cds#index"

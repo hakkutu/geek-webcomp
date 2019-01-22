@@ -1,0 +1,26 @@
+<div class="cds">
+	<%#=fields_for :cds do |f| %>
+	<%=form_for @cd,url:artists_cds_path do |f| %>
+	<h1>CD情報</h1>
+	<h2>CDの名前</h2>
+	<%=f.text_field :cd_name %>
+	<h2>ジャンル</h2>
+	<%=f.text_field :genre %>
+	<h2>ジャケットの写真</h2>
+	<%=f.attachment_field :jacket %>
+	<h2>値段</h2>
+	<%=f.text_field :price %>
+	<h2>レーベル名</h2>
+	<%=f.text_field :label %>
+	<h2>個数</h2>
+	<%=f.text_field :stock%>
+	<h1>Disc情報</h1>
+	<div class="discs">
+	<%=f.fields_for :discs do |disc|%>
+		<div><%= render "disc_fields", f: disc %></div>
+	<%end%>
+	</div>
+	<div><%= link_to_add_association "discを追加",f,:discs %></div>
+	<h2><%=f.submit %></h2>
+	<% end %>
+</div>

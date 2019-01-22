@@ -1,0 +1,10 @@
+<div class="nest-feild-discs">
+	<h2>disc名</h2>
+	<%=f.text_field :disc_name %>
+	<%= link_to_remove_association "delete", f %>
+	<h1>song情報</h1>
+	<%= f.fields_for :songs do |song|%>
+	<div><%= render "song_fields", f: song %></div>
+	<% end %>
+	<div><%= link_to_add_association "songを追加",f,:songs %></div>
+</div>

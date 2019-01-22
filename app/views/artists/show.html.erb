@@ -1,2 +1,21 @@
-<h1>Artists#show</h1>
-<p>Find me in app/views/artists/show.html.erb</p>
+<h1>マイページ</h1>
+<table class="table">
+	<%= attachment_image_tag @artist, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+	<tr>
+		<td>name</td>
+		<td><%=@artist.name %></td>
+	</tr>
+	<tr>
+		<td>introduction</td>
+		<td><%=@artist.introduction %></td>
+	</tr>
+</table>
+<% artist.cds.all.each do |cd| %>
+<%=cd.cd_name %>
+<%= attachment_image_tag @artist, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %>
+<% if status==0 %>
+申請中
+<% else %>
+販売中
+<% end %>
+<%end%>
