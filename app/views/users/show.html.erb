@@ -1,2 +1,12 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<%= @user.name %>
+<%= link_to "edit", edit_user_path(@user) %>
+
+<% @user_orderlists.each do |user_orderlist|  %>
+
+<% user_orderlist.cds do |cd| %>
+<%= cd.cd_name  %>
+<%= cd.artist_id.name %>
+
+<% end %>
+<% end %>
