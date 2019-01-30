@@ -1,3 +1,4 @@
+
 	class Artists::CdsController < ApplicationController
 		def new
 			@cd=Cd.new

@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 devise_for :users, controllers: {
   sessions:      'users/sessions',
@@ -48,4 +49,3 @@ devise_for :admins, controllers: {
    resources :artist_commnets,only:[:index]
    resources :user_comments,only:[:index]
   end
-end

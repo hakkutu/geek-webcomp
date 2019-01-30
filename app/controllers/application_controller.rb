@@ -1,3 +1,4 @@
+
 class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 			artists_artist_path(current_artist)
@@ -12,5 +13,6 @@ class ApplicationController < ActionController::Base
 
 
 end
+
 
 
