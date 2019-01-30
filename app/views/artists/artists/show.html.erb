@@ -1,0 +1,26 @@
+<h1>マイページ</h1>
+<table class="table">
+	<%= attachment_image_tag @artist, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+	<tr>
+		<td>name</td>
+		<td><%=@artist.name %></td>
+	</tr>
+	<tr>
+		<td>introduction</td>
+		<td><%=@artist.introduction %></td>
+	</tr>
+</table>
+<% if @artist.id==current_artist.id %>
+<%=link_to "",edit_artists_artist_path(current_artist.id),class:"col-xs-4 btn btn-default glyphicon glyphicon-wrench edit_user_378"%>
+<% end %><br>
+<% @artist.cds.all.each do |cd| %>
+<%=cd.cd_name %>
+<%= attachment_image_tag @artist, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %>
+<% if status==0 %>
+申請中
+<% else %>
+販売中
+<% end %>
+<%end%>
+
+<%=link_to "CD申請",new_artists_cd_path %>
