@@ -14,4 +14,3 @@ has_many :orderlists
 has_many :cd_favorites
 attachment :image
 end
-
