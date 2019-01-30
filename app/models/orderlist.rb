@@ -1,4 +1,5 @@
 class Orderlist < ApplicationRecord
-	has_many :cds,thorugh: :cds
+	has_many :orserlist_cds
+	has_many :cds,through: :orserlist_cds
 	belongs_to :user
 end

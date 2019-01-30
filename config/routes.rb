@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/update'
   get 'users/destroy'
+  get 'users/unsubscribe'
   get 'orderlist_cds/create'
   get 'orderlists/create'
   get 'cd_favorites/create'
@@ -25,9 +26,9 @@ devise_for :admins, controllers: {
   registrations: 'admins/registrations'
 }
 devise_for :artists, controllers: {
-  sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
+  sessions:      'artists/sessions',
+  passwords:     'artists/passwords',
+  registrations: 'artists/registrations'
 }
 devise_for :users, controllers: {
   sessions:      'users/sessions',
@@ -62,6 +63,7 @@ devise_for :users, controllers: {
    resources :users,only:[:index,:show,:destroy]
    resources :artists,only:[:index,:show,:destroy,:edit,:update,:index]
    resources :admins,only:[:index]
+   resources :cds, only:[:show]
    get "/admins/permit"=>"admin/#permit",as:"admin_permit"
    resources :artist_commnets,only:[:index]
    resources :user_comments,only:[:index]

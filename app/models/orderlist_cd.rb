@@ -1,4 +1,4 @@
 class OrderlistCd < ApplicationRecord
 	belongs_to :cd
-	belongs?to :orderlist
+	belongs_to :orderlist
 end

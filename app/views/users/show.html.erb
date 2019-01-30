@@ -2,6 +2,12 @@
 <%= @user.name %>
 <%= link_to "edit", edit_user_path(@user) %>
 
+
+<% @user_artists.each do |user_artist| %>
+<%= user_artist.name %>
+<% end %>
+
+
 <% @user_orderlists.each do |user_orderlist|  %>
 
 <% user_orderlist.cds do |cd| %>

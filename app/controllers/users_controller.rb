@@ -5,9 +5,8 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-  	@user_artists = User.artists
-  	@user_orderlists = User.orderlists
-
+  	@user_artists = @user.artists
+  	@user_orderlists = @user.orderlists
   end
 
   def update
@@ -15,8 +14,14 @@ class UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user)
   end
+  def unsubscribe
 
+  end
   def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = "ご利用ありがとうございました"
+    redirect_to root_path
   end
     private
     def user_params
