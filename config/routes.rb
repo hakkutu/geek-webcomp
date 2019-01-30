@@ -17,6 +17,7 @@ devise_for :admins, controllers: {
   registrations: 'admins/registrations'
 }
 
+  get 'users/unsubscribe'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "cds#index"
@@ -45,6 +46,7 @@ devise_for :admins, controllers: {
    resources :users,only:[:index,:show,:destroy]
    resources :artists,only:[:index,:show,:destroy,:edit,:update,:index]
    resources :admins,only:[:index]
+   resources :cds, only:[:show]
    get "/admins/permit"=>"admin/#permit",as:"admin_permit"
    resources :artist_commnets,only:[:index]
    resources :user_comments,only:[:index]
