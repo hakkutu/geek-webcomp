@@ -12,5 +12,13 @@ has_many :orderlists
 has_many :user_comments
 has_many :cd_favorites
 attachment :image
+
+#userが新規登録する段階でそいつ用のcartができる
+before_create :build_default_cart
+private
+def build_default_cart
+  build_cart
+  true
 end
 
+end

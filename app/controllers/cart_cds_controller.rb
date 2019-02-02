@@ -9,7 +9,7 @@ class CartCdsController < ApplicationController
   end
 
   def destroy
-    carts_cds = CartsCD.fint(params[:id])
+    carts_cds = CartsCD.find(params[:id])
     carts_cds.destroy
   end
 end
