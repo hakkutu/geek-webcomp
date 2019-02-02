@@ -8,6 +8,7 @@
 		def create
 			cd=Cd.new(cd_params)
 			cd.status=1
+			cd.artist_id = current_artist.id
 			cd.save
 			redirect_to artists_artist_path(current_artist)
 		end
@@ -25,6 +26,6 @@
 		end
 		private
 		def cd_params
-			params.require(:cd).permit(:artist_id,:genre,:jacket,:price,:label,:stock,:status,discs_attributes: [:id,:cd_id,:disc_name],discs_attributes:[:disc_number,:disc_name,:_destroy,songs_attributes: [:id,:disc_id,:song_listen,:song_number,:song_name,:_destroy]])
+			params.require(:cd).permit(:artist_id,:genre,:jacket,:price,:label,:stock, discs_attributes: [:id,:cd_id,:disc_name],discs_attributes:[:disc_number,:disc_name,:_destroy,songs_attributes: [:id,:disc_id,:song_listen,:song_number,:song_name,:_destroy]])
 		end
 	end

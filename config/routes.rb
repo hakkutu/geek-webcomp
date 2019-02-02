@@ -51,3 +51,4 @@ devise_for :admins, controllers: {
    resources :artist_commnets,only:[:index]
    resources :user_comments,only:[:index]
   end
+end
