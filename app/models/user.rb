@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 has_many :cds,through: :cd_favorites
+has_many :artist_favorites
 has_many :artists,through: :artist_favorites
 has_many :cds,through: :user_comments
 has_one :cart
