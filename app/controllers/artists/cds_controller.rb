@@ -1,3 +1,4 @@
+
 	class Artists::CdsController < ApplicationController
 		def new
 			@cd=Cd.new
@@ -6,8 +7,9 @@
 		end
 		def create
 			cd=Cd.new(cd_params)
+			cd.status=1
 			cd.save
-			redirect_to artists_artist_path(current_user)
+			redirect_to artists_artist_path(current_artist)
 		end
 		def show
 
