@@ -12,4 +12,3 @@ class CdsController < ApplicationController
 
   end
 end
-
