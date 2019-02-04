@@ -12,6 +12,9 @@ class Admins::ArtistsController < ApplicationController
   end
 
   def update
+    artist = Artist.find(params[:id])
+    artist.update
+    redirect_to admins_artists_path
   end
 
   def destroy
