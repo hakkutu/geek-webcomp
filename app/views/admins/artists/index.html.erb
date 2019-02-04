@@ -1,0 +1,27 @@
+<h1>アーティスト一覧</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @artists.each do |artist| %>
+    <tr>
+      <td>
+        <% if artist.image %>
+        <%= attachment_image_tag artist, :image, :fill, 50, 50 %>
+        <% else %>
+        <%= image_tag('no_image.jpg', :size => 50) %>
+        <% end %>
+      </td>
+      <td><%= artist.name %></td>
+      <td><%= link_to "show", admins_artist_path(artist) %></td>
+      <td><%= link_to "edit", edit_admins_artist_path(artist) %></td>
+      <td><%= link_to "destroy", admins_artist_path(artist), method: :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
