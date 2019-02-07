@@ -1,19 +1,15 @@
 <h1>履歴</h1>
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th></th>
-    </tr>
-  </thead>
   <tbody>
     <% @orderlists.each do |orderlist| %>
-    <tr>
-      <td></td>
-      <td><%= link_to book.title, book_path(book) %></td>
-      <td><%= book.body %></td>
-    </tr>
-    <% end %>
+      <p><%= orderlist.created_at %></p>
+      <%= oderlist.orderlist_cds.each do |orderlist_cd| %>
+        <tr>
+          <td><%= orderlist_cd.cd.jacket_id %><%= orderlist_cd.cd.artist.name %><br><%= orderlist_cd.cd.cd_name %></td>
+          <td><%= orderlist_cd.number %></td>
+          <td><%= cart_cd.cd.price %></td>
+        </tr>
+      <% end %>
+    <% end%>
   </tbody>
 </table>

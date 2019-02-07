@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 		elsif current_user
 			user_path(current_user)
 		elsif current_admin
-			admins_users_path
+			admins_admins_path
 		end
 	end
   protected

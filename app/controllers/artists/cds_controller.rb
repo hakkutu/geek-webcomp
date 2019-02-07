@@ -7,7 +7,7 @@
 		end
 		def create
 			cd=Cd.new(cd_params)
-			cd.status=1
+			cd.status=0
 			cd.artist_id = current_artist.id
 			cd.save
 			redirect_to artists_artist_path(current_artist)
