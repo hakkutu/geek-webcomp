@@ -21,7 +21,9 @@ devise_for :admins, controllers: {
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "cds#index"
-  resources :cds,only:[:show]
+  resources :cds,only:[:show] do
+    resources :cd_favorites,only:[:create,:destroy]
+  end
     resources :users,only:[:edit,:show, :create, :update,:destroy] do
     resources :carts,only:[:edit,:show,:update] do
      resources :carts_cds,only:[:new,:create,:destroy]

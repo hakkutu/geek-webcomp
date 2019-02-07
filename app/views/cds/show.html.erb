@@ -3,10 +3,32 @@
 <%= @cd.price %>
 <%= @cd.price %>
 <%= @cd.artist_id %>
+<% if @cd.favorited_by?(current_user) %>
+<li>
+	<%= link_to cd_cd_favorite_path(@cd),method: :delete do %>
+		<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+	      <%= @cd.cd_favorites.where(favorite: 0).count %>Good d
+	<% end %>
+	<%= link_to cd_cd_favorite_path(@cd),method: :delete do %>
+	<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+	<%= @cd.cd_favorites.where(favorite: 1).count %>Bad d
+	<% end %>
+</li>
 
-<% @discs.each do |disc| %>
+<% else %>
+  <li>
+    <%= link_to cd_cd_favorites_path(cd_id: @cd.id,favorite: 0), method: :post do %>
+      <%= @cd.cd_favorites.where(favorite: 0).count %>Good
+      <% end %>
+    <%= link_to cd_cd_favorites_path(cd_id: @cd.id,favorite: 1), method: :post do %>
+      <i class="fa fa-heart-o" aria-hidden="true"></i>
+      <%= @cd.cd_favorites.where(favorite: 1).count %>Bood
+    <% end %>
+  </li>
+<% end %>
+<% @cd.discs.each do |disc| %>
 <%= disc.disc_name %>
-<% @songs.each do |song| %>
+<% disc.songs.each do |song| %>
 <%= song.song_name %>
 
 <% end %>
@@ -18,10 +40,3 @@
 <%= user_comment.body %>
 
 <% end %>
-
-<%= form_for[@cd, @user_comment] do |f| %>
-	<%= f.textarea :body %>
-
-	<%= f.submit "コメントを投稿する" %>
-
-	<% end %>
