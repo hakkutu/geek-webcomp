@@ -1,0 +1,9 @@
+<h1>Editing disc</h1>
+<%=form_for(@disc,url:edit_artists_cd_disc_path(@disc.id)) do |f| %>
+<h1>disc名</h1>
+<%=f.text_field :disc_name %><br>
+<h1>Disc個数</h1>
+<%=f.text_area :disc_number %><br>
+<h1></h1>
+<%=f.submit "Update Book" %>
+<% end %>
