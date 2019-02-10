@@ -1,0 +1,8 @@
+<% @users.each do |user| %>
+
+<%= user.name %>
+<%= user.email %>
+<%= link_to "編集", edit_admins_user_path(user) %>
+<%= link_to "詳細",  admins_user_path(user) %>
+<%= link_to "削除", admins_user_path(user.id), method: :delete %>
+<% end %>
