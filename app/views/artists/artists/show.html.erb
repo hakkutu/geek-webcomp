@@ -15,12 +15,25 @@
 <% end %><br>
 <% @artist.cds.all.each do |cd| %>
 <%=cd.cd_name %>
-<%= attachment_image_tag @artist, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %>
-<% if status==0 %>
+<%= attachment_image_tag cd, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %>
+<% if cd.status==0 %>
 申請中
 <% else %>
 販売中
 <% end %>
-<%end%>
 
+<%= form_for @artist_comment,url: artists_cd_artist_comments_path(cd.id) do |f| %>
+            <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+<% end %>
+<div>
+<%cd.artist_comments.each do |artist_comment| %>
+
+<h2><%= artist_comment.body %></h2>
+
+<% end %>
+</div>
+<%end%>
 <%=link_to "CD申請",new_artists_cd_path %>
+
+

@@ -2,8 +2,8 @@
 class Artists::ArtistCommentsController < ApplicationController
 	def create
 		cd=Cd.find(params[:cd_id])
-		artist_comment=current_artist.artistcomments.new(artist_comment_params)
-		cd.id=artist_comment.cd_id
+		artist_comment=current_artist.artist_comments.new(artist_comment_params)
+		artist_comment.cd_id=cd.id
 		artist_comment.save
 		redirect_to artists_artist_path(current_artist)
 	end
