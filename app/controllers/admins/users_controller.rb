@@ -17,9 +17,7 @@ class Admins::UsersController < ApplicationController
     @user.update(user_params)
     redirect_to admins_users_path
   end
-  def unsubscribe
 
-  end
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -28,6 +26,6 @@ class Admins::UsersController < ApplicationController
     private
     def user_params
        params.require(:user).permit(:name,:email,:postcode,:address,:phone_number,:kana_name)
-    end	
+    end
 
 end
