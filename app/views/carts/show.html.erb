@@ -27,3 +27,4 @@
     <% end %>
   </tbody>
 </table>
+<%=link_to "購入する",user_orderlist_orderlist_path(current_user.id),"data-confirm"=>"購入を確定してよろしいでしょうか",method: :post%>

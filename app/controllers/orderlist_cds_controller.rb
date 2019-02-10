@@ -1,5 +1,6 @@
 class OrderlistCdsController < ApplicationController
   def create
+  	binding.pry
     cart = Cart.find(current_user.cart)
     cart_cds = cart.cart_cds
     cart_cds.each do |cart_cd|
