@@ -8,7 +8,8 @@ class CdsController < ApplicationController
   	@discs = @cd.discs
   	@songs = @cd.songs
   	@user_comment = UserComment.new
-  	@user_comments = UserComment.all
-
+    @user_comments=UserComment.all
+    @artist_comment=ArtistComment.new
+  	@comments = (@cd.user_comments.all+@cd.artist_comments.all).sort_by{|comments| comments.created_at}
   end
 end

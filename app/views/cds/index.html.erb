@@ -1,9 +1,9 @@
 
 
-<%= @cds.each do |cd| %>
+<% @cds.each do |cd| %>
 
 <%= attachment_image_tag cd, :jacket, :fill, 100, 100,fallback: "no_image.jpg" %>
-<h2><%= link_to cd.artist.name , every_artist_path(cd.artist_id) %></h2>
+<h2><%= link_to cd.artist.name, every_artist_path(cd.artist_id) %></h2>
 <h2><%=link_to cd.cd_name, cd_path(cd)%></h2>
 <%= cd.price %>
 

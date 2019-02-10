@@ -9,6 +9,6 @@ class UserCommentsController < ApplicationController
 
   private
   def user_comment_params
-  params.require(:post_comment).permit(:user_id,:cd_id,:user_comment)
+  params.require(:user_comment).permit(:user_id,:cd_id,:body)
 end
 end

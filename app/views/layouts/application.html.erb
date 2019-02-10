@@ -1,65 +1,132 @@
+
+
 <!DOCTYPE html>
+
 <html>
+
   <head>
+
     <title>Geek</title>
+
     <%= csrf_meta_tags %>
+
     <%= csp_meta_tag %>
 
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
+
+
   <body>
+
     <% if user_signed_in? %>
+
   <header>
+
     <nav>
+
       <li >
+
         geek
+
       </li>
+
       <ul>
-        <li><%= link_to 'MyPage', user_path(current_user) %></li>
+
+        <li><%= link_to 'MyPage', user_path(current_user.id) %></li>
+
         <li><%= link_to 'Cart', user_cart_path(current_user, current_user.cart)  %></li>
+
         <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
+
       </ul>
+
     </nav>
+
   </header>
+
 <% elsif admin_signed_in? %>
+
   <header>
+
     <nav >
+
       <li >
+
         geek
+
       </li>
+
       <ul >
+
         <li><%= link_to 'User', admins_users_path %></li>
+
         <li><%= link_to 'Artist', admins_artists_path %></li>
+
         <li><%= link_to 'CD', root_path%></li>
+
         <li><%= link_to '管理者', admins_admins_path %></li>
+
       </ul>
+
     </nav>
+
   </header>
+
 <% elsif artist_signed_in? %>
+
   <header>
+
     <nav >
+
       <li >
+
         geek
+
       </li>
+
       <ul class="dropdown">>
+
         <li><%= link_to 'MyPage', artists_artist_path(current_artist) %></li>
+
         <li role="presentation" class: "dropdown-header">CD</li>
+
         <li role="presentation"><%= link_to '追加', new_artists_cd_path  %></li>
+
         <li role="presentation"><%= link_to '編集',  new_user_registration_path %>
+
         </li>
+
         <li role="presentation"><%= link_to '削除',  new_user_registration_path %>
+
         </li>
+
         <li role="presentation"><%= link_to 'logout', destroy_admin_session_path, method: :delete  %></li>
+
       </ul>
+
     </nav>
+
   </header>
+
   <% else %>
+
       <ul >
+
         <li><%= link_to 'login', new_user_session_path %></li>
+
       </ul>
+
 <% end %>
+
     <%= yield %>
+
   </body>
+
 </html>
+
