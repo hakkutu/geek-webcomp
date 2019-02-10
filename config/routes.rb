@@ -48,7 +48,7 @@ devise_for :admins, controllers: {
   end
 
   namespace :admins do
-   resources :users,only:[:index,:show,:destroy]
+   resources :users,only:[:index,:edit,:show, :create, :update,:destroy ]
    resources :artists,only:[:index,:show,:destroy,:edit,:update,:index]
    resources :admins,only:[:index]
    resources :cds, only:[:show]

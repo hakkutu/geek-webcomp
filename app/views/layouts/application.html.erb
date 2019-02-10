@@ -17,7 +17,7 @@
         geek
       </li>
       <ul>
-        <li><%= link_to 'MyPage', user_path %></li>
+        <li><%= link_to 'MyPage', user_path(current_user) %></li>
         <li><%= link_to 'Cart', user_cart_path(current_user, current_user.cart)  %></li>
         <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
       </ul>
