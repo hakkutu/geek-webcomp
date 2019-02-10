@@ -11,6 +11,7 @@
 	</tr>
 </table>
 <% if @artist.id==current_artist.id %>
+
 <%=link_to "",edit_artists_artist_path(current_artist.id),class:"col-xs-4 btn btn-default glyphicon glyphicon-wrench edit_user_378"%>
 <% end %><br>
 <% @artist.cds.all.each do |cd| %>

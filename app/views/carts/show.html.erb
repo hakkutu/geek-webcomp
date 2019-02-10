@@ -19,6 +19,7 @@
         <td><%= attachment_image_tag cart_cd.cd, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %></td>
         <td><%= cart_cd.cd.cd_name %></td>
         <td><%=cart_cd.cd.artist.name %></td>
+         <td><%= cart_cd.number %></td>
         <td><%= cart_cd.cd.price %></td>
         <td><%=link_to "destroy",user_cart_cart_cd_path(user_id: current_user.id,cart_id: current_user.cart.id,id: cart_cd.id),"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %></td>
         <%n=n+1%>

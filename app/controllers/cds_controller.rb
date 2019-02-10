@@ -7,6 +7,7 @@ class CdsController < ApplicationController
   	@cd = Cd.find(params[:id])
   	@discs = @cd.discs
   	@songs = @cd.songs
+    @cart_cds=CartCd.new
   	@user_comment = UserComment.new
     @user_comments=UserComment.all
     @artist_comment=ArtistComment.new
