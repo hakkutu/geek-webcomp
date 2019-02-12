@@ -1,4 +1,5 @@
 class Artists::DiscsController < ApplicationController
+	before_action :authenticate_artist!
 	def destroy
 		disc=disc.find(params[:id])
 		disc.destroy

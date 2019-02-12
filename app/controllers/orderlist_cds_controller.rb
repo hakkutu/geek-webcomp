@@ -1,6 +1,6 @@
 class OrderlistCdsController < ApplicationController
+	before_action :authenticate_user!
   def create
-  	binding.pry
     cart = Cart.find(current_user.cart)
     cart_cds = cart.cart_cds
     cart_cds.each do |cart_cd|

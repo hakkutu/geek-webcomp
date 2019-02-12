@@ -1,4 +1,5 @@
 class OrderlistsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @orderlists = Orderlist.all
   end
@@ -20,6 +21,10 @@ class OrderlistsController < ApplicationController
       orderlist_cd.number = cart_cd.number
       orderlist_cd.price=a+cart_cd.number*cart_cd.cd.price
       orderlist_cd.orderlist_id = orderlist.id
+      cd=cart_cd.cd
+      binding.pry
+      cd.stock-=cart_cd.number
+      cd.save
       orderlist_cd.save
     end
     cart_cds.destroy_all

@@ -1,5 +1,5 @@
-
-	class Artists::CdsController < ApplicationController
+class Artists::CdsController < ApplicationController
+		before_action :authenticate_artist!
 		def new
 			@cd=Cd.new
 			@disc=@cd.discs.build

@@ -1,5 +1,5 @@
 class CartCdsController < ApplicationController
-
+before_action :authenticate_user!
   def create
     cd=Cd.find(params[:cd_id])
     cart_cds=CartCd.new(cart_cd_params)
@@ -10,8 +10,8 @@ class CartCdsController < ApplicationController
   end
 
   def destroy
-    cart_cds=CartCd.find(params[:id])
-    cart_cds.destroy
+    cart_cd=CartCd.find(params[:id])
+    cart_cd.destroy
     redirect_to user_cart_path(current_user,current_user.cart.id)
   end
   private

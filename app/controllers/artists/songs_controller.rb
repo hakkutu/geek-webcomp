@@ -1,4 +1,5 @@
 class Artists::SongsController < ApplicationController
+	before_action :authenticate_artist!
 	def destroy
 		song=song.find(params[:id])
 		song.destroy

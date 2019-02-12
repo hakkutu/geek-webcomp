@@ -1,18 +1,46 @@
 
 <%= @user.name %>
 <%= link_to "edit", edit_user_path(@user) %>
+<%=n=1 %>
+<table>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>CD名</th>
+      <th>値段</th>
+      <th>アーティスト名</th>
+      <th>枚数</th>
+      <th>合計金額</th>
+      <th>状況</th>
+    </tr>
+  </thead>
+  <tbody>
+<% n=1 %>
+<% current_user.orderlists.each do |orderlist| %>
+<%orderlist.orderlist_cds.each do |cd_orderlist| %>
+<tr>
+<td><%=n%></td>
+<td><%=cd_orderlist.cd.cd_name%></td>
+<td><%=cd_orderlist.cd.price%></td>
+<td><%=cd_orderlist.cd.artist.name%></td>
+<td><%= cd_orderlist.number %></td>
+<td><%= cd_orderlist.price %></td>
+<% if cd_orderlist.orderlist.status==0 %>
+<td>発送中</td>
+<%else%>
+<td>発送済み</td>
 
-
-<% @user_artists.each do |user_artist| %>
-<%= user_artist.name %>
 <% end %>
-
-
-<% @user_orderlists.each do |user_orderlist|  %>
-
-<% user_orderlist.cds do |cd| %>
-<%= cd.cd_name  %>
-<%= cd.artist_id.name %>
-
+</tr>
+<%n=n+1%>
 <% end %>
 <% end %>
+<%# @user_orderlists.each do |user_orderlist|  %>
+<%#user_orderlist.orderlist_cds.each do |orderlist_cd| %>
+<%#=orderlist_cd.number %>
+<%# end%>
+<%#user_orderlist.cds do |cd| %>
+<%#= cd.cd_name  %>
+<%#= cd.artist.name %>
+<%# end %>
+<%#end %>
