@@ -1,4 +1,4 @@
-<h1>カート</h1>
+<h1>購入確認画面</h1>
 <table>
   <thead>
     <tr>
@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <%=n=1 %>
-    <%@cart.cart_cds.each do |cart_cd| %>
+    <%current_user.cart.cart_cds.each do |cart_cd| %>
       <tr>
         <td><%=n%></td>
         <td><%= attachment_image_tag cart_cd.cd, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %></td>
@@ -27,4 +27,11 @@
     <% end %>
   </tbody>
 </table>
-<%=link_to "購入する",new_user_orderlist_path(current_user)%>
+<h2>送付先</h2>
+<%=form_for @orderlist,url:user_orderlists_path(current_user.id) do |f|%>
+<h3>住所</h3>
+<%=f.text_area :address %>
+<h3>郵便番号</h3>
+<%=f.text_field :address_number %><br>
+<%=f.submit "購入を確定"%>
+<%end%>

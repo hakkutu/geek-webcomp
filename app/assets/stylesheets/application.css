@@ -11,5 +11,25 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+  *= require_tree ../../../app/assets/stylesheets/.
  *= require_self
  */
+#container{
+ 	height: 500px;
+ 	margin-bottom: 30px;
+ }
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.cd_container{
+ 	width: 350px;
+ 	height:500px;
+ 	float:left;
+ 	text-align: center;
+}
+a {
+  text-decoration: none;
+  color:black;
+}

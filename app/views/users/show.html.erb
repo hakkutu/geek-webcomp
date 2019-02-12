@@ -12,6 +12,8 @@
       <th>枚数</th>
       <th>合計金額</th>
       <th>状況</th>
+      <th>購入日</th>
+      <th>送付先</th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +33,8 @@
 <td>発送済み</td>
 
 <% end %>
+<td><%=cd_orderlist.created_at%></td>
+<td><%=cd_orderlist.orderlist.address%></td>
 </tr>
 <%n=n+1%>
 <% end %>

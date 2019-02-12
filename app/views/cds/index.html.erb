@@ -1,16 +1,23 @@
-
+<div id="container">
+        <div id="theTarget">
+            <div style="background-image: url(assets/test.jpeg)"></div>
+            <div style="background-image: url(assets/test2.png)"></div>
+            <div style="background-image: url(assets/test3.jpg)"></div>
+            <div style="background-image: url(assets/test4.jpg)"></div>
+            <div style="background-image: url(assets/test4.png)"></div>
+        </div>
+</div>
 
 <% @cds.each do |cd| %>
-
-<%= attachment_image_tag cd, :jacket, :fill, 100, 100,fallback: "no_image.jpg" %>
-<h2><%= link_to cd.artist.name, every_artist_path(cd.artist_id) %></h2>
-<h2>在庫</h2>
-<h2><%=cd.stock%></h2>
+<div class="cd_container clearfix">
+<%= attachment_image_tag cd, :jacket, :fill, 200, 200,fallback: "no_image.jpg" %>
+<h3><%= link_to cd.artist.name, every_artist_path(cd.artist_id) %></h3>
+<h3>在庫:<%=cd.stock%>個</h3>
 <% if cd.stock==0 %>
-<h2>sold out</h2>
+<h3>sold out</h3>
 <%else%>
-<h2><%=link_to cd.cd_name, cd_path(cd)%></h2>
+<h3><%=link_to cd.cd_name, cd_path(cd)%></h3>
 <%end %>
-<%= cd.price %>
-
+<h3>価格:<%= cd.price %>円</h3>
+</div>
 <% end %>
