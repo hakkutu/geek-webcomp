@@ -1,4 +1,4 @@
-<div id="container">
+<div id="container1">
         <div id="theTarget">
             <div style="background-image: url(assets/test.jpeg)"></div>
             <div style="background-image: url(assets/test2.png)"></div>
@@ -7,12 +7,17 @@
             <div style="background-image: url(assets/test4.png)"></div>
         </div>
 </div>
-<%= form_tag root_path, :method => 'get' do %>
+
+<%= form_tag root_path,class:"form-control",:method => 'get' do%>
+<div class="form-group has-icon">
   <%= text_field_tag :search %>
-  <%= submit_tag 'Search', :name => nil %>
+  <%= submit_tag 'Search',class:"btn btn-lg btn-block btn-base-1 mt-20", :name => nil,style:"margin-bottom:30px;" %>
 <% end %>
+<div class="container">
+	<div class="row">
 <% @cds.each do |cd| %>
-<div class="cd_container clearfix">
+
+<div class="cd_container col-md-4 clearfix well">
 <%= attachment_image_tag cd, :jacket, :fill, 200, 200,fallback: "no_image.jpg" %>
 <h3><%= link_to cd.artist.name, every_artist_path(cd.artist_id) %></h3>
 <h3>在庫:<%=cd.stock%>個</h3>
@@ -24,3 +29,5 @@
 <h3>価格:<%= cd.price %>円</h3>
 </div>
 <% end %>
+</div>
+</div>

@@ -14,6 +14,43 @@
   *= require_tree ../../../app/assets/stylesheets/.
  *= require_self
  */
+ /*
+*= require rails_bootstrap_forms
+*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+ul {
+  list-style: none;
+}
+.cart{
+	margin-top: 50px;
+}
+.glyphicon-thumbs-up{
+	margin:20px 0;
+font-size: 50px;
+}
+.glyphicon-thumbs-down{
+	margin:20px 0;
+font-size: 50px;
+	margin-left: 50px;
+}
+.good{
+	font-size: 50px;
+}
+li {
+  list-style: none;
+}
+
+#search{
+	width: 95%;
+	height: 25px;
+	margin-bottom:20px;
+}
+.cd_show{
+	float: left;
+	margin-right:30px;
+	margin-bottom: 30px;
+}
 #container{
  	height: 500px;
  	margin-bottom: 30px;
@@ -29,7 +66,17 @@
  	float:left;
  	text-align: center;
 }
+.cd_container:nth-child(3n+2){
+	margin:0 20px;
+}
+#container1{
+	height: 800px;
+}
 a {
   text-decoration: none;
   color:black;
+}
+footer{
+	color:white;
+	background-color: black;
 }

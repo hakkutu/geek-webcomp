@@ -1,71 +1,89 @@
-<div><%= attachment_image_tag @cd, :jacket, :fill, 100, 100,fallback: "no_image.jpg" %></div>
-<h2>CD名</h2>
-<div><%= @cd.cd_name %></div>
-<h2>値段</h2>
-<div><%= @cd.price %>円</div>
-<h2>在庫</h2>
-<div><%= @cd.stock %>個</div>
-<h2>アーティスト名</h2>
-<div><%=@cd.artist.name%></div>
-<h2
->ジャンル</h2>
-<div><%=@cd.genre%></div>
-<h2>レーベル名</h2>
-<div><%=@cd.label%></div>
- <% if user_signed_in? %>
-<%=form_for @cart_cds,url:user_cart_cart_cds_path(cart_id:current_user.cart.id,cd_id: @cd.id,user_id: current_user.id) do |f|%>
-<%=f.number_field :number,min: 0,max: @cd.stock %>
-<%=f.submit "カートに追加"%>
-<% end %>
-<%end%>
- <% if user_signed_in? %>
-<% if @cd.favorited_by?(current_user) %>
-<li>
-	<%= link_to cd_cd_favorite_path(@cd),method: :delete do %>
-		<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-	      <%= @cd.cd_favorites.where(favorite: 0).count %>Good
+	<div class="clearfix">
+	<div class="cd_show clearfix"><%= attachment_image_tag @cd, :jacket, :fill, 500, 500,fallback: "no_image.jpg" %></div>
+	<div class="cd_show clearfix">
+	<h3>CD名:<%= @cd.cd_name %></h3
+>
+	<h3>値段:<%= @cd.price %>円</h3>
+	<h3>在庫:<%= @cd.stock %>個</h3>
+	<h3>アーティスト名:<%=@cd.artist.name%></h3>
+	<h3>ジャンル:<%=@cd.genre%></h3>
+	<h3>レーベル名:<%=@cd.label%></h3>
+	 <% if user_signed_in? %>
+	 <div class="cart">
+	<%=form_for @cart_cds,url:user_cart_cart_cds_path(cart_id:current_user.cart.id,cd_id: @cd.id,user_id: current_user.id) do |f|%>
+	<%=f.number_field :number,min: 0,max: @cd.stock %>
+	<%=f.submit "カートに追加"%>
 	<% end %>
-	<%= link_to cd_cd_favorite_path(@cd),method: :delete do %>
-	<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-	<%= @cd.cd_favorites.where(favorite: 1).count %>Bad
-	<% end %>
-</li>
-
-<% else %>
-  <li>
-    <%= link_to cd_cd_favorites_path(cd_id: @cd.id,favorite: 0), method: :post do %>
-      <%= @cd.cd_favorites.where(favorite: 0).count %>Good
-      <% end %>
-    <%= link_to cd_cd_favorites_path(cd_id: @cd.id,favorite: 1), method: :post do %>
-      <i class="fa fa-heart-o" aria-hidden="true"></i>
-      <%= @cd.cd_favorites.where(favorite: 1).count %>Bood
-    <% end %>
-  </li>
-<% end %>
-<% end %>
-<% @cd.discs.each do |disc| %>
-<%= disc.disc_name %>
-<% disc.songs.each do |song| %>
-<%= song.song_name %>
-
-<% end %>
-<% end %>
-
-<%= form_for @user_comment,url: cd_user_comments_path(@cd.id) do |f| %>
-            <%= f.text_area :body, class: "form-control",placeholder: "コメントをここに" %>
-    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-<% end %>
-
-
-<%@comments.each do |comment| %>
-<div>
-<%if comment.class==UserComment %>
-<%=comment.user.name %>
-<%= attachment_image_tag comment.user, :image, :fill, 100, 100,fallback: "no_image.jpg" %>
-<%elsif comment.class==ArtistComment %>
-<span><%=comment.artist.name %>
-<%= attachment_image_tag comment.artist, :image, :fill, 100, 100,fallback: "no_image.jpg" %></span>
-<%end%>
-<span>:<%=comment.body %></span>
 </div>
-<% end %>
+	<%end%></div>
+	</div>
+	 <% if user_signed_in? %>
+	<% if @cd.favorited_by?(current_user)==0 %>
+		<%= link_to cd_cd_favorite_path(@cd),favorite: 0,method: :delete do %>
+			<i class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: red;"></i>
+			<span class="good">
+		      <%= @cd.cd_favorites.where(favorite: 0).count %>
+		  </span>
+
+
+
+
+
+
+
+	<li>
+		<%= link_to cd_cd_favorite_path(@cd),method: :delete do %>
+			<i class="glyphicon glyphicon-thumbs-up" aria-hidden="true" style="color: red;"></i>
+			<span class="good">
+		      <%= @cd.cd_favorites.where(favorite: 0).count %>
+		  </span>
+		<% end %>
+		<%= link_to cd_cd_favorite_path(@cd),method: :delete do %>
+		<i class="glyphicon glyphicon-thumbs-down" aria-hidden="true" style="color: red;"></i>
+		<span class="good">
+		<%= @cd.cd_favorites.where(favorite: 1).count %></span>
+		<% end %>
+	</li>
+
+	<% else %>
+	  <li>
+	    <%= link_to cd_cd_favorites_path(cd_id: @cd.id,favorite: 0), method: :post do %>
+	    <i class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></i>
+	    <span class="good">
+	      <%= @cd.cd_favorites.where(favorite: 0).count %></span>
+	      <% end %>
+	    <%= link_to cd_cd_favorites_path(cd_id: @cd.id,favorite: 1), method: :post do %>
+	      <i class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></i>
+	      <span class="good">
+	      <%= @cd.cd_favorites.where(favorite: 1).count %>
+	  </span>
+	    <% end %>
+	  </li>
+	<% end %>
+	<% end %>
+	<% @cd.discs.each do |disc| %>
+	<%= disc.disc_name %>
+	<% disc.songs.each do |song| %>
+	<%= song.song_name %>
+
+	<% end %>
+	<% end %>
+
+	<%= form_for @user_comment,url: cd_user_comments_path(@cd.id) do |f| %>
+	            <%= f.text_area :body, class: "form-control",placeholder: "コメントをここに" %>
+	    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+	<% end %>
+
+
+	<%@comments.each do |comment| %>
+	<div>
+	<%if comment.class==UserComment %>
+	<%=comment.user.name %>
+	<%= attachment_image_tag comment.user, :image, :fill, 100, 100,fallback: "no_image.jpg" %>
+	<%elsif comment.class==ArtistComment %>
+	<span><%=comment.artist.name %>
+	<%= attachment_image_tag comment.artist, :image, :fill, 100, 100,fallback: "no_image.jpg" %></span>
+	<%end%>
+	<span>:<%=comment.body %></span>
+	</div>
+	<% end %>
