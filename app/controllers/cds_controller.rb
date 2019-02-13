@@ -1,6 +1,6 @@
 class CdsController < ApplicationController
   def index
-  	@cds = Cd.all
+  	@cds = Cd.all.search(params[:search])
   end
 
   def show
@@ -14,3 +14,4 @@ class CdsController < ApplicationController
   	@comments = (@cd.user_comments.all+@cd.artist_comments.all).sort_by{|comments| comments.created_at}
   end
 end
+

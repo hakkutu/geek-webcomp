@@ -2,6 +2,13 @@
 <%= @user.name %>
 <%= link_to "edit", edit_user_path(@user) %>
 <%=n=1 %>
+<h3>favorite artist</h3>
+<% current_user.artist_favorites.each do|favorite| %>
+<%link_to every_artist_path(favorite.artist) do%>
+%>
+<h4><%=favorite.artist.name %></h4>
+<%end%>
+<%end%>
 <table>
   <thead>
     <tr>

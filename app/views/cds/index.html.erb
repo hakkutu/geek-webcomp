@@ -7,7 +7,10 @@
             <div style="background-image: url(assets/test4.png)"></div>
         </div>
 </div>
-
+<%= form_tag root_path, :method => 'get' do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
 <% @cds.each do |cd| %>
 <div class="cd_container clearfix">
 <%= attachment_image_tag cd, :jacket, :fill, 200, 200,fallback: "no_image.jpg" %>

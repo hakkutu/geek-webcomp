@@ -17,5 +17,12 @@ class Cd < ApplicationRecord
 	def favorited_by?(user)
 	self.cd_favorites.where(user_id: user.id).exists?
   end
+  def self.search(search)
+  	if search
+  		Cd.where(['cd_name LiKe?',"%#{search}%"])
+  	else
+  		Cd.all
+  	end
+  end
 end
 

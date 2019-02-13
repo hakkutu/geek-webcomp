@@ -14,7 +14,7 @@
 <div><%=@cd.label%></div>
  <% if user_signed_in? %>
 <%=form_for @cart_cds,url:user_cart_cart_cds_path(cart_id:current_user.cart.id,cd_id: @cd.id,user_id: current_user.id) do |f|%>
-<%=f.number_field :number,min: "0",max: "@cd.number" %>
+<%=f.number_field :number,min: 0,max: @cd.stock %>
 <%=f.submit "カートに追加"%>
 <% end %>
 <%end%>
@@ -58,7 +58,14 @@
 
 
 <%@comments.each do |comment| %>
-<%= attachment_image_tag comment.cd, :jacket, :fill, 100, 100,fallback: "no_image.jpg" %>
-<h2><%=comment.body %></h2>
-
+<div>
+<%if comment.class==UserComment %>
+<%=comment.user.name %>
+<%= attachment_image_tag comment.user, :image, :fill, 100, 100,fallback: "no_image.jpg" %>
+<%elsif comment.class==ArtistComment %>
+<span><%=comment.artist.name %>
+<%= attachment_image_tag comment.artist, :image, :fill, 100, 100,fallback: "no_image.jpg" %></span>
+<%end%>
+<span>:<%=comment.body %></span>
+</div>
 <% end %>
