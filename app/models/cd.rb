@@ -16,7 +16,7 @@ class Cd < ApplicationRecord
 	accepts_nested_attributes_for :discs, reject_if: :all_blank, allow_destroy: true
 	def favorited_by?(user)
 	self.cd_favorites.where(user_id: user.id).exists?
-  end
+  	end
   def self.search(search)
   	if search
   		Cd.where(['cd_name LiKe?',"%#{search}%"])

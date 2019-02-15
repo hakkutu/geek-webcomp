@@ -1,14 +1,24 @@
-
-<%= @user.name %>
-<%= link_to "edit", edit_user_path(@user) %>
-<%=n=1 %>
+<div class="clearfix">
+<div class="profile-container well clearfix">
+    <h3 class="profile-name"><%= @user.name %></h3>
+    <div class="clearfix"><%= attachment_image_tag @user, :image, :fill, 100, 100, class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></div>
+    <% if @user.id == current_user.id %>
+        <div><%= link_to "プロフィール編集", (@user), class: "btn btn-success" %></div>
+    <% end %>
+</div>
+<%n=1 %>
+<div class="favorite_artist clearfix">
 <h3>favorite artist</h3>
 <% current_user.artist_favorites.each do|favorite| %>
-<%link_to every_artist_path(favorite.artist) do%>
-%>
-<h4><%=favorite.artist.name %></h4>
+<div class="favorite_artist clearfix">
+
+<div><%= attachment_image_tag favorite.artist, :image, :fill, 100, 100, class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></div>
+<h4><%=link_to favorite.artist.name, every_artist_path(favorite.artist)%></h4>
+</div>
+
 <%end%>
-<%end%>
+</div>
+<div class="table clearfix">
 <table>
   <thead>
     <tr>
@@ -23,7 +33,6 @@
       <th>送付先</th>
     </tr>
   </thead>
-  <tbody>
 <% n=1 %>
 <% current_user.orderlists.each do |orderlist| %>
 <%orderlist.orderlist_cds.each do |cd_orderlist| %>
@@ -46,6 +55,8 @@
 <%n=n+1%>
 <% end %>
 <% end %>
+</table>
+</div>
 <%# @user_orderlists.each do |user_orderlist|  %>
 <%#user_orderlist.orderlist_cds.each do |orderlist_cd| %>
 <%#=orderlist_cd.number %>

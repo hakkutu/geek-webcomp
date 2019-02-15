@@ -1,3 +1,4 @@
+<div class="everyartist">
 <h1><%= attachment_image_tag @artist, :image, :fill, 100, 100, fallback: "no_image.jpg" %></h1>
 <table class="table">
 	<tr>
@@ -9,21 +10,26 @@
 		<td><%=@artist.introduction%></td>
 	</tr>
 </table>
+<div class="clearfix">
 <% if @artist.favorited_by?(current_user) %>
 <li>
 <%= link_to every_artist_artist_favorite_path(@artist),method: :delete do %>
-	<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-      <%= @artist.artist_favorites.count %> いいね
+	<i class="glyphicon glyphicon-heart-empty" aria-hidden="true" style="color: red;"></i>
+	<span class="iine">
+      <%= @artist.artist_favorites.count %></span>
     <% end %>
+   </li>
 <% else %>
   <li>
     <%= link_to every_artist_artist_favorites_path(@artist), method: :post do %>
-      <i class="fa fa-heart-o" aria-hidden="true"></i>
-      <%= @artist.artist_favorites.count %> いいね
+      <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
+      <span class="iine">
+      <%= @artist.artist_favorites.count %>
+  </span>
     <% end %>
   </li>
 <% end %>
-
+</div>
 <% @artist.cds.each do |cd| %>
 <%= link_to cd_path(cd.id) do%>
 <%= attachment_image_tag cd,:jacket, :fill, 100, 100,fallback: "no_image.jpg" %>
@@ -32,3 +38,4 @@
 <h2>在庫</h2>
 <h2><%=cd.stock %>個</h2>
 <% end %>
+</div>
