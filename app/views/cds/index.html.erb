@@ -7,9 +7,9 @@
 			<div style="background-image: url(assets/test4.png)"></div>
 		</div>
 	</div>
-	<div class="clearfix">
-		<%= form_tag root_path,class:"kennsaku",:method => 'get' do%>
-		<%= text_field_tag :search %>
+	<div class="clearfix kenssaku">
+		<%= form_tag root_path,class:"kennsaku clearfix",:method => 'get' do%>
+		<%= text_field_tag :search%>
 		<%= submit_tag 'Search',class:"btn btn-lg btn-block btn-base-1 mt-20 clearfix", :name => nil,style:"margin-bottom:30px;" %>
 		<% end %>
 	</div>

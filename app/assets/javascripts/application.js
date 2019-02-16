@@ -14,16 +14,22 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree ../../../app/assets/javascripts/.
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 //= require cocoon
+console.log('aaaaa');
+
+$(function() {
+  $('.menu-trigger').on('click', function() {
+    $(this).toggleClass('active');
+    $('#sp-menu').fadeToggle();
+  });
+ });
+
 $(function(){
 $("document").ready(function() {
- 
 // オプションを指定してSkipprの実行
 $("#theTarget").skippr({
     // スライドショーの変化 ("fade" or "slide")
@@ -48,5 +54,5 @@ $("#theTarget").skippr({
     hidePrevious : false
 });
 });
- 
+
 });
