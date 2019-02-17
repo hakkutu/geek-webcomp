@@ -1,5 +1,5 @@
 
-<h1>マイページ</h1>
+<h2>マイページ</h2>
 <table class="table">
 	<%= attachment_image_tag @artist, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
 	<tr>
@@ -19,4 +19,16 @@
 <% else %>
 販売中
 <% end %>
+<%(cd.user_comments.all+cd.artist_comments.all).sort_by{|comments| comments.created_at}.each do |comment| %>
+	<div>
+	<%if comment.class==UserComment %>
+	<%=comment.user.name %>
+	<%= attachment_image_tag comment.user, :image, :fill, 100, 100,fallback: "no_image.jpg" %>
+	<%elsif comment.class==ArtistComment %>
+	<span><%=comment.artist.name %>
+	<%= attachment_image_tag comment.artist, :image, :fill, 100, 100,fallback: "no_image.jpg" %></span>
+	<%end%>
+	<span>:<%=comment.body %></span>
+	</div>
+	<% end %>
 <%end%>

@@ -26,39 +26,17 @@
     <nav>
 
 
-    <% if user_signed_in? %>
-    <div id="sp-menu">
-      <h1><%= link_to 'GEEK', root_path %></h1>
-      <ul>
-        <li><%= link_to 'MyPage', user_path(current_user.id) %></li>
 
-        <li><%= link_to 'Cart', user_cart_path(current_user, current_user.cart)  %></li>
-
-        <li><%= link_to 'Artist', every_artists_path%></li>
-
-        <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
-      </ul>
-    </div>
-
-<% elsif artist_signed_in? %>
+<% if artist_signed_in? %>
 <div id="sp-menu">
       <h1><%= link_to 'GEEK', root_path %></h1>
       <ul>
         <li><%= link_to 'MyPage', artists_artist_path(current_artist) %></li>
 
-        <li role="presentation" class: "dropdown-header">CD</li>
+        <li role="presentation"><%= link_to 'CD申請', new_artists_cd_path  %></li>
 
-        <li role="presentation"><%= link_to '追加', new_artists_cd_path  %></li>
 
-        <li role="presentation"><%= link_to '編集',  new_user_registration_path %>
-
-        </li>
-
-        <li role="presentation"><%= link_to '削除',  new_user_registration_path %>
-
-        </li>
-
-        <li role="presentation"><%= link_to 'logout', destroy_admin_session_path, method: :delete  %></li>
+        <li role="presentation"><%= link_to 'logout', destroy_artist_session_path, method: :delete  %></li>
          </ul>
     </div>
 <% elsif admin_signed_in? %>
@@ -74,7 +52,19 @@
         <li><%= link_to '管理者', admins_admins_path %></li></ul>
     </div>
 
+<% elsif user_signed_in? %>
+    <div id="sp-menu">
+      <h1><%= link_to 'GEEK', root_path %></h1>
+      <ul>
+        <li><%= link_to 'MyPage', user_path(current_user.id) %></li>
 
+        <li><%= link_to 'Cart', user_cart_path(current_user, current_user.cart)  %></li>
+
+        <li><%= link_to 'Artist', every_artists_path%></li>
+
+        <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </div>
     <% else %>
 <div id="sp-menu">
       <h1><%= link_to 'GEEK', root_path %></h1>
@@ -94,11 +84,13 @@
     </div>
 </nav>
 </header>
-
 <body>
+
+
     <%= yield %>
 
-  </body>
+</body>
+
 <footer class="footer style-2">
               <p class="no-margin" style="font-size: 20px;">
               オタクのためのインディーズバンド、アイドルのためのCDショップ</p>
@@ -106,5 +98,6 @@
               Geek
             </div>
     </footer>
+
 </html>
 

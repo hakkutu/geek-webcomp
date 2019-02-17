@@ -1,6 +1,6 @@
-<h1>マイページ</h1>
+<h2>マイページ</h2>
 <table class="table">
-	<%= attachment_image_tag @artist, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
+	<%= attachment_image_tag @artist, :image, :fill, 100, 100, fallback: "no_image.jpg" %><h2></h2>
 	<tr>
 		<td>name</td>
 		<td><%=@artist.name %></td>
@@ -14,27 +14,37 @@
 
 <%=link_to "",edit_artists_artist_path(current_artist.id),class:"col-xs-4 btn btn-default glyphicon glyphicon-wrench edit_user_378"%>
 <% end %><br>
+<h1></h1>
 <% @artist.cds.all.each do |cd| %>
-<%=cd.cd_name %>
-<%= attachment_image_tag cd, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %>
+<%=cd.cd_name %>:
+<%= attachment_image_tag cd, :jacket, :fill, 50, 50, fallback: "no_image.jpg" %>
 <% if cd.status==0 %>
 申請中
 <% else %>
 販売中
 <% end %>
-
+<h1></h1>
 <%= form_for @artist_comment,url: artists_cd_artist_comments_path(cd.id) do |f| %>
-            <%= f.text_area :body, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+            <%= f.text_area :body, class: "form-control",placeholder: "コメントをここに" %>
     <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 <% end %>
+<h1></h1>
 <div>
-<%cd.artist_comments.each do |artist_comment| %>
-
-<h2><%= artist_comment.body %></h2>
-
-<% end %>
-</div>
+<%(cd.user_comments.all+cd.artist_comments.all).sort_by{|comments| comments.created_at}.each do |comment| %>
+	<div>
+	<%if comment.class==UserComment %>
+	<%=comment.user.name %>
+	<%= attachment_image_tag comment.user, :image, :fill, 50, 50,fallback: "no_image.jpg" %>
+	<%elsif comment.class==ArtistComment %>
+	<span><%=comment.artist.name %>
+	<%= attachment_image_tag comment.artist, :image, :fill, 50, 50,fallback: "no_image.jpg" %></span>
+	<%end%>
+	<span>:<%=comment.body %></span>
+	</div>
+	<% end %>
 <%end%>
-<%=link_to "CD申請",new_artists_cd_path %>
+<h2></h2>
+<%#=link_to "CD申請",new_artists_cd_path,class:"btn btn-success" %>
 
 
+<h1></h1>

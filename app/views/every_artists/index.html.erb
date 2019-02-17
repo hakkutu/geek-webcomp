@@ -1,7 +1,23 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>No.</th>
+        <th></th>
+      <th>Artist名</th>
+    </tr>
+  </thead>
+<% n=1 %>
+
+
 <%@artists.each do |artist| %>
-<%= link_to every_artist_path(artist.id) do%>
+<tr>
+<td><%=n %></td>
+<td><%= link_to every_artist_path(artist.id) do%>
 <%= attachment_image_tag artist, :image, :fill, 100, 100,fallback: "no_image.jpg" %>
-<%end%>
-<h2>Artist名</h2>
-<h2><%= artist.name %></h2>
+<%end%></td>
+<td><%= artist.name %></td>
+
+<%n=n+1 %>
+</tr>
 <% end %>
+</table>
