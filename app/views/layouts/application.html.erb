@@ -21,112 +21,84 @@
   </head>
 
 
-
-  <body>
-
-    <% if user_signed_in? %>
-
-  <header>
+    <header class="clearfix">
 
     <nav>
 
-      <li >
 
-        geek
 
-      </li>
-
+<% if artist_signed_in? %>
+<div id="sp-menu">
+      <h1><%= link_to 'GEEK', root_path %></h1>
       <ul>
+        <li><%= link_to 'MyPage', artists_artist_path(current_artist) %></li>
 
-        <li><%= link_to 'MyPage', user_path(current_user.id) %></li>
+        <li role="presentation"><%= link_to 'CD申請', new_artists_cd_path  %></li>
 
-        <li><%= link_to 'Cart', user_cart_path(current_user, current_user.cart)  %></li>
 
-        <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
-
-      </ul>
-
-    </nav>
-
-  </header>
-
+        <li role="presentation"><%= link_to 'logout', destroy_artist_session_path, method: :delete  %></li>
+         </ul>
+    </div>
 <% elsif admin_signed_in? %>
-
-  <header>
-
-    <nav >
-
-      <li >
-
-        geek
-
-      </li>
-
-      <ul >
-
-        <li><%= link_to 'User', admins_users_path %></li>
+<div id="sp-menu">
+      <h1><%= link_to 'GEEK', root_path %></h1>
+      <ul>
+         <li><%= link_to 'User', admins_users_path %></li>
 
         <li><%= link_to 'Artist', admins_artists_path %></li>
 
         <li><%= link_to 'CD', root_path%></li>
 
-        <li><%= link_to '管理者', admins_admins_path %></li>
+        <li><%= link_to '管理者', admins_admins_path %></li></ul>
+    </div>
 
+<% elsif user_signed_in? %>
+    <div id="sp-menu">
+      <h1><%= link_to 'GEEK', root_path %></h1>
+      <ul>
+        <li><%= link_to 'MyPage', user_path(current_user.id) %></li>
+
+        <li><%= link_to 'Cart', user_cart_path(current_user, current_user.cart)  %></li>
+
+        <li><%= link_to 'Artist', every_artists_path%></li>
+
+        <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
       </ul>
-
-    </nav>
-
-  </header>
-
-<% elsif artist_signed_in? %>
-
-  <header>
-
-    <nav >
-
-      <li >
-
-        geek
-
-      </li>
-
-      <ul class="dropdown">>
-
-        <li><%= link_to 'MyPage', artists_artist_path(current_artist) %></li>
-
-        <li role="presentation" class: "dropdown-header">CD</li>
-
-        <li role="presentation"><%= link_to '追加', new_artists_cd_path  %></li>
-
-        <li role="presentation"><%= link_to '編集',  new_user_registration_path %>
-
-        </li>
-
-        <li role="presentation"><%= link_to '削除',  new_user_registration_path %>
-
-        </li>
-
-        <li role="presentation"><%= link_to 'logout', destroy_admin_session_path, method: :delete  %></li>
-
-      </ul>
-
-    </nav>
-
-  </header>
-
-  <% else %>
-
+      <%#=link_to "退会",users_path,"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %>
+    </div>
+    <% else %>
+<div id="sp-menu">
+      <h1><%= link_to 'GEEK', root_path %></h1>
       <ul >
 
         <li><%= link_to 'login', new_user_session_path %></li>
 
       </ul>
-
+</div>
 <% end %>
+    <div id="hm-icon">
+      <a class="menu-trigger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+</nav>
+</header>
+<body>
+
 
     <%= yield %>
 
-  </body>
+</body>
+
+<footer class="footer style-2">
+              <p class="no-margin" style="font-size: 20px;">
+              オタクのためのインディーズバンド、アイドルのためのCDショップ</p>
+              <div class="geek" style="font-size: 50px;">
+              Geek
+            </div>
+    </footer>
 
 </html>
 

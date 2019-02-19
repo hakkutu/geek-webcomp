@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :"電話番号" %><br />
-    <%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
+    <%= f.telephone_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
   </div>
 
   <div class="field">
@@ -48,5 +48,7 @@
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
-
+<h3><%=link_to 'アーティスト方はこちらへ',new_artist_registration_path%></h3>
 <%= render "devise/shared/links" %>
+<div class="login">
+</div>

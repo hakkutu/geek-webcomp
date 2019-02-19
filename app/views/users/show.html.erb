@@ -1,18 +1,69 @@
+<div class="clearfix">
+<div class="profile-container well clearfix">
+    <h3 class="profile-name"><%= @user.name %></h3>
+    <div class="clearfix"><%= attachment_image_tag @user, :image, :fill, 100, 100, class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></div>
+    <% if @user.id == current_user.id %>
+        <div><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %></div>
+    <% end %>
+</div>
+<%n=1 %>
+<div class="favorite_artist clearfix">
+<h3>favorite artist</h3>
+<% current_user.artist_favorites.each do|favorite| %>
+<div class="favorite_artist clearfix">
 
-<%= @user.name %>
-<%= link_to "edit", edit_user_path(@user) %>
+<div><%= attachment_image_tag favorite.artist, :image, :fill, 100, 100, class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></div>
+<h4><%=link_to favorite.artist.name, every_artist_path(favorite.artist)%></h4>
+</div>
 
+<%end%>
+</div>
+<h3>購入履歴</h3>
+<div class=table clearfix">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>CD名</th>
+      <th>値段</th>
+      <th>アーティスト名</th>
+      <th>枚数</th>
+      <th>合計金額</th>
+      <th>状況</th>
+      <th>購入日</th>
+      <th>送付先</th>
+    </tr>
+  </thead>
+<% n=1 %>
+<% current_user.orderlists.each do |orderlist| %>
+<%orderlist.orderlist_cds.each do |cd_orderlist| %>
+<tr>
+<td><%=n%></td>
+<td><%=cd_orderlist.cd.cd_name%></td>
+<td><%=cd_orderlist.cd.price%></td>
+<td><%=cd_orderlist.cd.artist.name%></td>
+<td><%= cd_orderlist.number %></td>
+<td><%= cd_orderlist.price %></td>
+<% if cd_orderlist.orderlist.status==0 %>
+<td>発送中</td>
+<%else%>
+<td>発送済み</td>
 
-<% @user_artists.each do |user_artist| %>
-<%= user_artist.name %>
 <% end %>
-
-
-<% @user_orderlists.each do |user_orderlist|  %>
-
-<% user_orderlist.cds do |cd| %>
-<%= cd.cd_name  %>
-<%= cd.artist_id.name %>
-
+<td><%=cd_orderlist.created_at%></td>
+<td><%=cd_orderlist.orderlist.address%></td>
+</tr>
+<%n=n+1%>
 <% end %>
 <% end %>
+</table>
+</div>
+<%# @user_orderlists.each do |user_orderlist|  %>
+<%#user_orderlist.orderlist_cds.each do |orderlist_cd| %>
+<%#=orderlist_cd.number %>
+<%# end%>
+<%#user_orderlist.cds do |cd| %>
+<%#= cd.cd_name  %>
+<%#= cd.artist.name %>
+<%# end %>
+<%#end %>

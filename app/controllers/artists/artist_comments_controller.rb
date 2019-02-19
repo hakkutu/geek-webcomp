@@ -1,5 +1,6 @@
 
 class Artists::ArtistCommentsController < ApplicationController
+	before_action :authenticate_artist!
 	def create
 		cd=Cd.find(params[:cd_id])
 		artist_comment=current_artist.artist_comments.new(artist_comment_params)

@@ -15,12 +15,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    if Artist
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
-    elsif User
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :kana_name, :address, :postcode, :phone_number])
-    end
+
+    if resource_class == User
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:name,:kano_name,:address,:postcode,:phone_number,:adress_number])
+  elsif resource_class== Artist
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:postcode,:address,:phone_number,:introduction,:image])
+  end
   end
 
 end
-    
