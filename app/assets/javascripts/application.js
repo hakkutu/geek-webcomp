@@ -12,7 +12,56 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery_ujs
+//= require bootstrap-sprockets
+//= require bootstrap-sprockets
+//= require_tree ../../../app/assets/javascripts/.
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 //= require cocoon
+console.log('aaaaa');
+
+$(function() {
+  $('.menu-trigger').on('click', function() {
+    $(this).toggleClass('active');
+    $('#sp-menu').fadeToggle();
+  });
+ });
+
+$(function(){
+$("document").ready(function() {
+// オプションを指定してSkipprの実行
+$("#theTarget").skippr({
+    // スライドショーの変化 ("fade" or "slide")
+    transition : 'slide',
+    // 変化に係る時間(ミリ秒)
+    speed : 1000,
+    // easingの種類
+    easing : 'easeOutQuart',
+    // ナビゲーションの形("block" or "bubble")
+    navType : 'block',
+    // 子要素の種類("div" or "img")
+    childrenElementType : 'div',
+    // ナビゲーション矢印の表示(trueで表示)
+    arrows : true,
+    // スライドショーの自動再生(falseで自動再生なし)
+    autoPlay : true,
+    // 自動再生時のスライド切替間隔(ミリ秒)
+    autoPlayDuration : 1000,
+    // キーボードの矢印キーによるスライド送りの設定(trueで有効)
+    keyboardOnAlways : true,
+    // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
+    hidePrevious : false
+});
+});
+
+});
+ $(function() {
+    $(document).on("ajax:success", ".fav", function(e) {
+      if ($('#' + e.detail[0]).hasClass('fa-heart')) {
+        $('#' + e.detail[0]).removeClass('fa-heart').addClass('fa-heart-o');
+      } else {
+    $('#' + e.detail[0]).removeClass('fa-heart-o').addClass('fa-heart');
+      }
+    })
+  })

@@ -29,9 +29,7 @@ devise_for :admins, controllers: {
     resources :carts,only:[:edit,:show,:update] do
      resources :cart_cds,only:[:new,:create,:destroy]
     end
-    resources :orderlists,only:[:create] do
-     resources :orderlist_cds,only:[:create]
-    end
+    resources :orderlists,only:[:create,:new]
   end
     resources :every_artists,only:[:show,:index] do
       resources :artist_favorites,only:[:destroy,:create]

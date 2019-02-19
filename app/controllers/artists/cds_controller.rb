@@ -1,5 +1,5 @@
-
-	class Artists::CdsController < ApplicationController
+class Artists::CdsController < ApplicationController
+		before_action :authenticate_artist!
 		def new
 			@cd=Cd.new
 			@disc=@cd.discs.build
@@ -9,8 +9,11 @@
 			cd=Cd.new(cd_params)
 			cd.artist_id=current_artist.id
 			cd.status=0
-			cd.save
+			if cd.save
 			redirect_to artists_artist_path(current_artist)
+		else
+			render :new
+		end
 		end
 		def show
 			@cd=Cd.find(params[:id])
@@ -20,8 +23,10 @@
 		end
 		def destroy
 			@cd=Cd.find(params[:id])
-			cd.destroy
-			redirect_to artists_cd_path(cd.id)
+			if @cd.artist_id==current_artist.id
+				@cd.destroy
+			end
+			redrect_to artists_cd_path(cd.id)
 		end
 		def update
 			cd=Cd.find(params[:id])
