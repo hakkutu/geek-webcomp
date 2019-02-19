@@ -1,6 +1,13 @@
 <div class="cds">
 	<%#=fields_for :cds do |f| %>
 	<%=form_for @cd,url:artists_cds_path do |f| %>
+	 <% if @cd.errors.any? %>
+        <%= @cd.errors.count %>件のエラーが発生しました
+        <% @cd.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+    <% end %>
+
 	<h3>CD情報</h3>
 	<table>
 		<tr>

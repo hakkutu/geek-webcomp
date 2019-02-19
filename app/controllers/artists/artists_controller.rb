@@ -2,7 +2,10 @@ class Artists::ArtistsController < ApplicationController
 	before_action :authenticate_artist!
 	def edit
 		@artist=Artist.find(params[:id])
+		 if @artist.id!=current_artist.id
+      		redirect_to artists_artist_path(@artist)
 	end
+end
 	def update
 		@artist=Artist.find(params[:id])
 		@artist.update(artist_params)

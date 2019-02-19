@@ -7,7 +7,7 @@ class CdFavoritesController < ApplicationController
     cd_favorite.user_id=current_user.id
     cd_favorite.save
     redirect_to cd_path(cd.id)
-  end
+   end
 
   def destroy
     cd=Cd.find(params[:cd_id])
