@@ -13,6 +13,8 @@ class Cd < ApplicationRecord
 	has_many :cart_cds
 	has_many :songs
 	has_many :cd_favorites
+
+	validates :genre, :cd_name, :jacket_id, :price, :label, :status, :stock , presence: true
 	accepts_nested_attributes_for :discs, reject_if: :all_blank, allow_destroy: true
 	def favorited_by?(user)
 	self.cd_favorites.where(user_id: user.id).exists?
