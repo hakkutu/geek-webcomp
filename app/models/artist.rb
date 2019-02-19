@@ -9,6 +9,9 @@ class Artist < ApplicationRecord
  has_many :cds,through: :artist_comments, dependent: :destroy
  has_many :cds, dependent: :destroy
  attachment :image
+
+validates :name, :email,  presence: true
+
   def favorited_by?(user)
 	# 	binding.pry
  #    if self.artist_favorites.where(artist_id: self.id).exists?

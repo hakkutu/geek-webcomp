@@ -8,13 +8,14 @@ class ApplicationController < ActionController::Base
 		when Artist
      	artists_artist_path(current_artist)
   		when Admin
-    	admin_path
+    	 admins_admins_path
     end
   end
 
   protected
 
   def configure_permitted_parameters
+
     if resource_class == User
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:name,:kano_name,:address,:postcode,:phone_number,:adress_number])
   elsif resource_class== Artist
