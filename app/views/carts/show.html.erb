@@ -1,25 +1,30 @@
-<h1>カート</h1>
-<table>
+<h2>カート</h2>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>No.</th>
       <th>CD情報</th>
+      <th>CD名</th>
+      <th>アーティスト名</th>
       <th>枚数</th>
       <th>値段</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% n = 1 %>
-    <%= n %>
-    <%= @cart.cart_cds.each do |cart_cd| %>
+    <%=n=1 %>
+    <%@cart.cart_cds.each do |cart_cd| %>
       <tr>
-        <td><%= n %></td>
-        <td><%= cart_cd.cd.jacket_id %><%= cart_cd.cd.artist.name %><br><%= cart_cd.cd.cd_name %></td>
-        <td><%= %></td>
+        <td><%=n%></td>
+        <td><%= attachment_image_tag cart_cd.cd, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %></td>
+        <td><%= cart_cd.cd.cd_name %></td>
+        <td><%=cart_cd.cd.artist.name %></td>
+         <td><%= cart_cd.number %></td>
         <td><%= cart_cd.cd.price %></td>
-        <td>カートから外す</td>
+        <td><%=link_to "destroy",user_cart_cart_cd_path(user_id: current_user.id,cart_id: current_user.cart.id,id: cart_cd.id),"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %></td>
+        <%n=n+1%>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%=link_to "購入する",new_user_orderlist_path(current_user),class:"btn btn-primary"%>

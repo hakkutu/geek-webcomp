@@ -1,4 +1,4 @@
 class CdFavorite < ApplicationRecord
-	belong_to :cds
-	belong_to :user
+	belongs_to :cd
+	belongs_to :user
 end

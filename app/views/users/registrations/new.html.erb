@@ -21,11 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :"郵便番号" %><br />
-    <%= f.email_field :postcode, autofocus: true, autocomplete: "郵便番号" %>
+    <%= f.text_field :postcode, autofocus: true, autocomplete: "郵便番号" %>
   </div>
   <div class="field">
     <%= f.label :"電話番号" %><br />
-    <%= f.email_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
+    <%= f.telephone_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
   </div>
 
   <div class="field">
@@ -40,10 +40,15 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
+  <div>
+    <%= link_to "アーティストの方はこちら" , new_artist_session_path %>
+  </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
-
+<h3><%=link_to 'アーティスト方はこちらへ',new_artist_registration_path%></h3>
 <%= render "devise/shared/links" %>
+<div class="login">
+</div>

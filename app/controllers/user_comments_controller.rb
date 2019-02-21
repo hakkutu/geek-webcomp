@@ -1,4 +1,5 @@
 class UserCommentsController < ApplicationController
+  before_action :authenticate_user!
   def create
   	cd = Cd.find(params[:cd_id])
     user_comment = current_user.user_comments.new(user_comment_params)
@@ -9,6 +10,6 @@ class UserCommentsController < ApplicationController
 
   private
   def user_comment_params
-  params.require(:post_comment).permit(:user_id,:cd_id,:user_comment)
+  params.require(:user_comment).permit(:user_id,:cd_id,:body)
 end
 end

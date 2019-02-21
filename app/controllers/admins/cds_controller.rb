@@ -24,4 +24,6 @@ class Admins::CdsController < ApplicationController
   end
 
 
+before_action :authenticate_admin!
+
 end

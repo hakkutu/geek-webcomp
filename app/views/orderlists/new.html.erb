@@ -1,0 +1,37 @@
+<h2>購入確認画面</h2>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>CD情報</th>
+      <th>CD名</th>
+      <th>アーティスト名</th>
+      <th>枚数</th>
+      <th>値段</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%=n=1 %>
+    <%current_user.cart.cart_cds.each do |cart_cd| %>
+      <tr>
+        <td><%=n%></td>
+        <td><%= attachment_image_tag cart_cd.cd, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %></td>
+        <td><%= cart_cd.cd.cd_name %></td>
+        <td><%=cart_cd.cd.artist.name %></td>
+         <td><%= cart_cd.number %></td>
+        <td><%= cart_cd.cd.price %></td>
+        <td><%=link_to "destroy",user_cart_cart_cd_path(user_id: current_user.id,cart_id: current_user.cart.id,id: cart_cd.id),"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %></td>
+        <%n=n+1%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<h2>送付先</h2>
+<%=form_for @orderlist,url:user_orderlists_path(current_user.id) do |f|%>
+<h3>住所</h3>
+<%=f.text_area :address %>
+<h3>郵便番号</h3>
+<%=f.text_field :address_number %><br>
+<%=f.submit "購入を確定"%>
+<%end%>

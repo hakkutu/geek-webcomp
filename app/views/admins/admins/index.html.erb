@@ -1,0 +1,6 @@
+<% @cds.each do |cd| %>
+
+<%= cd.name %>
+<%= link_to "申請許可", admins_admin_permit_path(cd_id: @cd.id) %>
+
+<% end %>
