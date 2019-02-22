@@ -5,9 +5,9 @@ class Admins::AdminsController < ApplicationController
   end
 
   def permit
-  	@cd = Cd.find(params[:cd_id])
+  	@cd = Cd.find(params[:id])
   	@cd.status = 1
   	@cd.save
-
+		redirect_to admins_admins_path
   end
 end
