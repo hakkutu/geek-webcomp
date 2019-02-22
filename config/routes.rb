@@ -49,7 +49,7 @@ devise_for :admins, controllers: {
    resources :artists,only:[:index,:show,:destroy,:edit,:update,:index]
    resources :admins,only:[:index]
    resources :cds, only:[:show]
-   get "/admins/permit"=>"admin/#permit",as:"admin_permit"
+   post "/admins/permit/:id"=>"admins#permit",as:"admin_permit"
    resources :artist_commnets,only:[:index]
    resources :user_comments,only:[:index]
   end

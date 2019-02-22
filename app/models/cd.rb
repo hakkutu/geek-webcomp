@@ -13,7 +13,7 @@ class Cd < ApplicationRecord
 	belongs_to :artist
 	attachment :jacket
 
-	validates :genre, :cd_name, :jacket_id, :price, :label, :status, :stock , presence: true
+	validates :genre,:cd_name,:jacket,:price,:label , presence: true
 	has_many :cart_cds, dependent: :destroy
 	has_many :songs, dependent: :destroy
 	has_many :cd_favorites, dependent: :destroy
@@ -29,4 +29,3 @@ class Cd < ApplicationRecord
   	end
   end
 end
-
