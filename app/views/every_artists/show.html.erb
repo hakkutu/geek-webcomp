@@ -31,11 +31,13 @@
 <% end %>
 </div>
 <% @artist.cds.each do |cd| %>
+<%if cd.status == 1 %>
 <%= link_to cd_path(cd.id) do%>
 <%= attachment_image_tag cd,:jacket, :fill, 100, 100,fallback: "no_image.jpg" %>
 <%end%>
 <h2><%= cd.price %>円</h2>
 <h2>在庫</h2>
 <h2><%=cd.stock %>個</h2>
+<% end %>
 <% end %>
 </div>

@@ -14,4 +14,3 @@ class CdsController < ApplicationController
   	@comments = (@cd.user_comments.all+@cd.artist_comments.all).sort_by{|comments| comments.created_at}
   end
 end
-
