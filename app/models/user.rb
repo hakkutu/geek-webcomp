@@ -3,12 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-has_many :cds,through: :cd_favorites, dependent: :destroy
+has_many :cds,through: :cd_favorites
 has_many :artist_favorites, dependent: :destroy
-has_many :artists,through: :artist_favorites, dependent: :destroy
-has_many :cds,through: :user_comments, dependent: :destroy
-has_one :cart
-has_many :cds,through: :cart_cds, dependent: :destroy
+has_many :artists,through: :artist_favorites
+has_many :cds,through: :user_comments
+has_one :cart, dependent: :destroy
+has_many :cds,through: :cart_cds
 has_many :orderlists, dependent: :destroy
 has_many :user_comments, dependent: :destroy
 has_many :cd_favorites, dependent: :destroy

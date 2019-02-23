@@ -6,10 +6,10 @@ class Artists::CdsController < ApplicationController
 			@song=@disc.songs.build
 		end
 		def create
-			cd=Cd.new(cd_params)
-			cd.artist_id=current_artist.id
-			cd.status=0
-			if cd.save
+			@cd=Cd.new(cd_params)
+			@cd.artist_id=current_artist.id
+			@cd.status=0
+			if @cd.save
 			redirect_to artists_artist_path(current_artist)
 		else
 			render :new

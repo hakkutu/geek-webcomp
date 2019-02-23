@@ -11,21 +11,12 @@
 	</tr>
 </table>
 <div class="clearfix">
-<% if @artist.favorited_by?(current_user) %>
-<li>
-<%= link_to every_artist_artist_favorite_path(@artist),method: :delete do %>
-	<i class="glyphicon glyphicon-heart-empty" aria-hidden="true" style="color: red;"></i>
-	<span class="iine">
-      <%= @artist.artist_favorites.count %></span>
-    <% end %>
-   </li>
-<% else %>
-  <li>
-    <%= link_to every_artist_artist_favorites_path(@artist), method: :post do %>
+    <li>
+    <%= link_to every_artist_artist_favorites_path(@artist), method: :post,class:"fav", remote: true do %>
       <i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
       <span class="iine">
       <%= @artist.artist_favorites.count %>
-  </span>
+    </span>
     <% end %>
   </li>
 <% end %>

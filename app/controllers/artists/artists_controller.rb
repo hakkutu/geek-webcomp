@@ -17,7 +17,8 @@ end
 		@artist_comment=ArtistComment.new
 		@artist_comments=ArtistComment.all
 	end
+	private
 def artist_params
-      params.require(:artist).permit(:iamge, :name,:email,:postcode,:address,:phone_number,:imtoduvtion)
+      params.require(:artist).permit(:iamge, :name,:email,:postcode,:address,:phone_number,:inteoduction)
     end
 end

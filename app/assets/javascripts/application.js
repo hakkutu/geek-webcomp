@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require turbolinks
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
@@ -29,7 +30,7 @@ $(function() {
  });
 
 $(function(){
-$("document").ready(function() {
+$(document).on('turbolinks:load',function() {
 // オプションを指定してSkipprの実行
 $("#theTarget").skippr({
     // スライドショーの変化 ("fade" or "slide")
@@ -58,6 +59,8 @@ $("#theTarget").skippr({
 });
  $(function() {
     $(document).on("ajax:success", ".fav", function(e) {
+        console.log('aaaaaa')
+
       if ($('#' + e.detail[0]).hasClass('fa-heart')) {
         $('#' + e.detail[0]).removeClass('fa-heart').addClass('fa-heart-o');
       } else {

@@ -47,10 +47,10 @@ devise_for :admins, controllers: {
   namespace :admins do
    resources :users,only:[:index,:edit,:show, :create, :update,:destroy ]
    resources :artists,only:[:index,:show,:destroy,:edit,:update,:index]
-   resources :admins,only:[:index]
-   resources :cds, only:[:show]
-   get "/admins/permit"=>"admin/#permit",as:"admin_permit"
-   resources :artist_commnets,only:[:index]
-   resources :user_comments,only:[:index]
-  end
+   resources :admins,only:[:index,:edit]
+   resources :cds, only:[:show,:destroy,:edit] do
+     resources :artist_comments,only:[:destroy]
+   resources :user_comments,only:[:destroy]
+ end
+end
 end

@@ -14,8 +14,8 @@ class Admins::ArtistsController < ApplicationController
 
   def update
     artist = Artist.find(params[:id])
-    artist.update
-    redirect_to admins_artists_path
+    artist.update(artist_params)
+    redirect_to admins_artist_path(artist.id)
   end
 
   def destroy
@@ -23,4 +23,8 @@ class Admins::ArtistsController < ApplicationController
     artist.destroy
     redirect_to admins_artists_path
   end
+  private
+    def artist_params
+      params.require(:artist).permit(:iamge, :name,:email,:postcode,:address,:phone_number,:imntroduction)
+    end
 end
