@@ -73,3 +73,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
 gem 'pry-rails'
   gem 'bootstrap_form'
+group :production do
+  # Gemfileの1番下に追加しましょう。
+  gem 'pg'
+end
