@@ -49,7 +49,7 @@
 
         <li><%= link_to 'CD', root_path%></li>
 
-        <li><%= link_to '管理者', admins_admins_path %></li></ul>
+        <li><%= link_to 'logout',  destroy_admin_session_path, method: :delete %></li></ul>
     </div>
 
 <% elsif user_signed_in? %>
