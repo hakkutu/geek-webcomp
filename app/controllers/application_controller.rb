@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 		when Artist
      	artists_artist_path(current_artist)
   		when Admin
-    	 admins_admins_path
+    	admins_admins_path
     end
   end
 

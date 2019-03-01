@@ -4,10 +4,10 @@ class Artist < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
  has_many :artist_favorites, dependent: :destroy
- has_many :users,through: :artist_favorites, dependent: :destroy
+ has_many :users,through: :artist_favorites
  has_many :artist_comments, dependent: :destroy
- has_many :cds,through: :artist_comments, dependent: :destroy
- has_many :cds, dependent: :destroy
+ has_many :cds,through: :artist_comments
+ has_many :cds
  attachment :image
 
 validates :name, :email,  presence: true

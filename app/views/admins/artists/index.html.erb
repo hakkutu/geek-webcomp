@@ -1,4 +1,4 @@
-<h1>アーティスト一覧</h1>
+<h2>アーティスト一覧</h2>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -19,8 +19,6 @@
       </td>
       <td><%= artist.name %></td>
       <td><%= link_to "show", admins_artist_path(artist) %></td>
-      <td><%= link_to "edit", edit_admins_artist_path(artist) %></td>
-      <td><%= link_to "destroy", admins_artist_path(artist), method: :delete %></td>
     </tr>
     <% end %>
   </tbody>

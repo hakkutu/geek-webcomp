@@ -1,15 +1,15 @@
 class Cd < ApplicationRecord
-	has_many :users,through: :cd_favorites, dependent: :destroy
+	has_many :users,through: :cd_favorites
 	has_many :user_comments, dependent: :destroy
 	has_many :artist_comments, dependent: :destroy
 
 
-	has_many :users,through: :user_comments, dependent: :destroy
-	has_many :artists,through: :artist_comments, dependent: :destroy
+	has_many :users,through: :user_comments
+	has_many :artists,through: :artist_comments
 	has_many :discs, dependent: :destroy
-	has_many :orderlist_cds, dependent: :destroy
-	has_many :orderlists,through: :orderlist_cds, dependent: :destroy
-	has_many :carts,through: :cart_cds, dependent: :destroy
+	has_many :orderlist_cds
+	has_many :orderlists,through: :orderlist_cds
+	has_many :carts,through: :cart_cds
 	belongs_to :artist
 	attachment :jacket
 

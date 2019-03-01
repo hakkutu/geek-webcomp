@@ -1,6 +1,16 @@
+
+
+<table class="table table-bordered">
+	<tr>
+	<th>CD名</th>
+	<th></th>
+</tr>
 <% @cds.each do |cd| %>
-
-<%= cd.cd_name %>
-<%= link_to "申請許可", admins_admin_permit_path(id: cd.id), method: :post %>
-
+<tr>
+<td><%= cd.cd_name %></td>
+<% if cd.status==0 %>
+<td><%= link_to "申請許可", edit_admins_admin_path(id:current_admin.id,cd_id: 1) %></td><% end %>
+</tr>
 <% end %>
+</table>
+

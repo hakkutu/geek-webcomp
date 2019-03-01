@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require turbolinks
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
@@ -19,7 +20,6 @@
 //= require activestorage
 //= require_tree .
 //= require cocoon
-console.log('aaaaa');
 
 $(function() {
   $('.menu-trigger').on('click', function() {
@@ -29,7 +29,7 @@ $(function() {
  });
 
 $(function(){
-$("document").ready(function() {
+$(document).on('turbolinks:load',function() {
 // オプションを指定してSkipprの実行
 $("#theTarget").skippr({
     // スライドショーの変化 ("fade" or "slide")
@@ -58,10 +58,17 @@ $("#theTarget").skippr({
 });
  $(function() {
     $(document).on("ajax:success", ".fav", function(e) {
-      if ($('#' + e.detail[0]).hasClass('fa-heart')) {
-        $('#' + e.detail[0]).removeClass('fa-heart').addClass('fa-heart-o');
+        console.log('ajax成功');
+
+      if ($('#' + e.detail[0]).hasClass('glyphicon glyphicon-heart')) {
+         let a=$(".iine").html();
+         $(".iine").html(Number(a)-1);
+        $('#' + e.detail[0]).removeClass('glyphicon glyphicon-heart').addClass('glyphicon glyphicon-heart-empty');
       } else {
-    $('#' + e.detail[0]).removeClass('fa-heart-o').addClass('fa-heart');
+         let a=$(".iine").html();
+         $(".iine").html(Number(a)+1);
+         console.log('glyphicon-heart-emptyある。');
+    $('#' + e.detail[0]).removeClass('glyphicon glyphicon-heart-empty').addClass('glyphicon glyphicon-heart');
       }
     })
   })
