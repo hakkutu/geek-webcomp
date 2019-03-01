@@ -1,3 +1,4 @@
+
 class Admins::CdsController < ApplicationController
 before_action :authenticate_admin!
 		def edit
@@ -9,3 +10,4 @@ before_action :authenticate_admin!
 			redrect_to artists_cd_path(cd.id)
 		end
 end
+

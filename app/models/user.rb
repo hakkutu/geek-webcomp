@@ -14,6 +14,8 @@ has_many :user_comments, dependent: :destroy
 has_many :cd_favorites, dependent: :destroy
 attachment :image
 
+validates :email, :name, :kano_name,   presence: true
+
 #userが新規登録する段階でそいつ用のcartができる
 before_create :build_default_cart
 private
@@ -23,4 +25,3 @@ def build_default_cart
 end
 
 end
-

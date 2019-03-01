@@ -1,0 +1,8 @@
+<%= @cds.each do |cd| %>
+
+<%= attachment_image_tag(cd, :cd, :fill, 100, 100) %>
+
+<%= link_to cd.artist_id , artists_path(cd.artists_id) %><%=link_to cd.cd_name, cd_path(cd)%>
+<%= cd.price %>
+
+<% end %>

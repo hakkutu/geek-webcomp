@@ -1,0 +1,23 @@
+
+<%= @cd.cd_name %>
+<%= @cd.price %>
+<%= @cd.price %>
+<%= @cd.artist_id %>
+
+<% @discs.each do |disc| %>
+<%= disc.disc_name %>
+<% @songs.each do |song| %>
+<%= song.song_name %>
+
+<% end %>
+<% end %>
+
+<% @cd.user_comments.each do |user_comment| %>
+
+<%= user_comment.name %>
+<%= user_comment.body %>
+
+<% end %>
+
+<%= link_to "edit", edit_admins_cd_path(@cd) %>
+<%= link_to "destroy", admins_cd_path(@cd), method: :delete %>

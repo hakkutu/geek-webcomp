@@ -15,6 +15,6 @@ class Artists::SongsController < ApplicationController
 	end
 	private
 	def disc_params
-			params.require(:disc).permit(,:disc_id,:disc_number,:disc_name)
+			params.require(:disc).permit(:disc_id,:disc_number,:disc_name)
 	end
 end
