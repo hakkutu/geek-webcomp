@@ -61,9 +61,12 @@ $("#theTarget").skippr({
         console.log('ajax成功');
 
       if ($('#' + e.detail[0]).hasClass('glyphicon glyphicon-heart')) {
-         console.log('glyphicon-heartある。');
+         let a=$(".iine").html();
+         $(".iine").html(Number(a)-1);
         $('#' + e.detail[0]).removeClass('glyphicon glyphicon-heart').addClass('glyphicon glyphicon-heart-empty');
       } else {
+         let a=$(".iine").html();
+         $(".iine").html(Number(a)+1);
          console.log('glyphicon-heart-emptyある。');
     $('#' + e.detail[0]).removeClass('glyphicon glyphicon-heart-empty').addClass('glyphicon glyphicon-heart');
       }

@@ -75,17 +75,17 @@
 	<%=comment.user.name %>
 	<%= attachment_image_tag comment.user, :image, :fill, 100, 100,fallback: "no_image.jpg" %>
 	<span>:<%=comment.body %></span>
-	<% if amdin_signed_in?%>
-	<span><%=link_to "destroy",admins_cd_user_comment(
-	cd_id: @cd.id,id: comment.id) %></span>
+	<% if admin_signed_in?%>
+	<span><%=link_to "destroy",admins_cd_user_comment(cd_id: @cd.id,id: comment.id) %></span>
+	<%end %>
 	<%elsif comment.class==ArtistComment %>
 	<span><%=comment.artist.name %>
 	<%= attachment_image_tag comment.artist, :image, :fill, 100, 100,fallback: "no_image.jpg" %></span>
 	<span>:<%=comment.body %></span>
-	<% if amdin_signed_in?%>
-	<span><%=link_to "destroy",admins_cd_user_comment_path(
-	cd_id: @cd.id,id: comment.id)%></span>
+	<% if admin_signed_in?%>
+	<span><%=link_to "destroy",admins_cd_user_comment_path(cd_id: @cd.id,id: comment.id)%></span>
 	<%end%>
 
 	</div>
 	<% end %>
+	<%end %>
