@@ -1,10 +1,18 @@
 class OrderlistsController < ApplicationController
   before_action :authenticate_user!
  def new
+
+  current_user.cart.flag=params[:flag]
+  if current_user.cart.flag==0
     @orderlist=Orderlist.new
+  else
+    redirect_to root_path
+  end
   end
 
   def create
+    current_user.cart.flag=params[:flag]==params[:flag]
+    if current_user.cart.flag==1
     orderlist = Orderlist.new(orderlist_params)
     cart = Cart.find(current_user.cart.id)
     cart_cds = cart.cart_cds
@@ -28,10 +36,12 @@ class OrderlistsController < ApplicationController
     end
     cart_cds.destroy_all
     redirect_to root_path
+  else
+  redirect_to root_path
   end
-
+  end
   private
   def orderlist_params
   params.require(:orderlist).permit(:address,:address_number)
-    end
+  end
 end
