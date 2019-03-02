@@ -33,5 +33,5 @@
 <%=f.text_area :address %>
 <h3>郵便番号</h3>
 <%=f.text_field :address_number %><br>
-<%=f.submit "購入を確定"%>
+<%=f.submit "購入を確定","data-confirm"=>"本当に確定してよろしいでしょうか"%>
 <%end%>

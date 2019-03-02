@@ -6,10 +6,11 @@
 	<th></th>
 </tr>
 <% @cds.each do |cd| %>
-<tr>
-<td><%= cd.cd_name %></td>
 <% if cd.status==0 %>
-<td><%= link_to "申請許可", edit_admins_admin_path(id:current_admin.id,cd_id: 1) %></td><% end %>
+<tr>
+<td><%=link_to cd.cd_name,admins_cd_path(cd.id)%></td>
+
+<td><%= link_to "申請許可", admins_admin_permit_path(cd.id),method: :post %></td><% end %>
 </tr>
 <% end %>
 </table>

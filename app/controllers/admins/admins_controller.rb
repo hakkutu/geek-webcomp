@@ -8,6 +8,6 @@ class Admins::AdminsController < ApplicationController
   	@cd = Cd.find(params[:id])
   	@cd.status = 1
   	@cd.save
-		redirect_to admins_admins_path
+    redirect_to admins_admins_path
   end
 end
