@@ -19,6 +19,7 @@
 			<th>個数</th>
 		</tr>
 		<tr>
+
 		<td><%=f.text_field :cd_name,class:"form-control" %></td>
 		<td><%=f.text_field :genre,class:"form-control" %></td>
 		<td><%=f.attachment_field :jacket %></td>
@@ -36,6 +37,6 @@
 	</div>
 	<h2></h2>
 	<div><%= link_to_add_association "discを追加",f,:discs,class:"btn btn-default" %></div>
-	<h2><%=f.submit "create cd" %></h2>
+	<h2><%=f.submit "create cd admin" %></h2>
 	<% end %>
 </div>

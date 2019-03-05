@@ -6,8 +6,7 @@ class Cd < ApplicationRecord
 
 	has_many :users,through: :user_comments
 	has_many :artists,through: :artist_comments
-	has_many :discs
-	has_many :songs
+	has_many :discs, dependent: :destroy
 	has_many :orderlist_cds
 	has_many :orderlists,through: :orderlist_cds
 	has_many :carts,through: :cart_cds

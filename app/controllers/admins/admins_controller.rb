@@ -5,6 +5,7 @@ class Admins::AdminsController < ApplicationController
   end
 
   def permit
+    binding.pry
   	@cd = Cd.find(params[:id])
   	@cd.status = 1
   	@cd.save

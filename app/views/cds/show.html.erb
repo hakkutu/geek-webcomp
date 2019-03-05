@@ -39,11 +39,7 @@
 		      <%= @cd.cd_favorites.where(favorite: 0).count %>
 		  </span>
 		<% end %>
-		<%= link_to cd_cd_favorite_path(@cd),method: :delete do %>
-		<i class="glyphicon glyphicon-thumbs-down" aria-hidden="true" style="color: red;"></i>
-		<span class="good">
-		<%= @cd.cd_favorites.where(favorite: 1).count %></span>
-		<% end %>
+		
 	</li>
 
 	<% else %>
@@ -53,31 +49,41 @@
 	    <span class="good">
 	      <%= @cd.cd_favorites.where(favorite: 0).count %></span>
 	      <% end %>
-	    <%= link_to cd_cd_favorites_path(cd_id: @cd.id,favorite: 1), method: :post do %>
-	      <i class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></i>
-	      <span class="good">
-	      <%= @cd.cd_favorites.where(favorite: 1).count %>
-	  </span>
-	    <% end %>
+	    
 	  </li>
 	<% end %>
 
 
-
+	 <% if @user_comment.errors.any? %>
+        <%= @user_comment.errors.count %>件のエラーが発生しました
+        <% @user_comment.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+    <% end %>
 
 	<%= form_for @user_comment,url: cd_user_comments_path(@cd.id) do |f| %>
 	            <%= f.text_area :body, class: "form-control",placeholder: "コメントをここに" %>
 	    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 	<% end %>
 <%end %>
+<% if @user_comment2!=nil %>
+<% if @user_comment2.errors.any? %>
 
+        <%= @user_comment2.errors.count %>件のエラーが発生しました
+        <% @user_comment2.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+    <% end %>
+   <%end%>
 	<%@comments.each do |comment| %>
 	<div>
 	<%if comment.class==UserComment %>
 	<%=comment.user.name %>
 	<%= attachment_image_tag comment.user, :image, :fill, 100, 100,fallback: "no_image.jpg" %>
 	<span>:<%=comment.body %></span>
-
+	<%if current_user.id==comment.user.id %>
+	<%=link_to "destroy",cd_user_comment_path(id: comment.id,cd_id: comment.cd_id),method: :delete,class:"btn btn-default"%>
+	<%end%>
 	<%elsif comment.class==ArtistComment %>
 	<span><%=comment.artist.name %>
 	<%= attachment_image_tag comment.artist, :image, :fill, 100, 100,fallback: "no_image.jpg" %></span>

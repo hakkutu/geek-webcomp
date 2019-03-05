@@ -27,6 +27,15 @@
     <% end %>
   </tbody>
 </table>
+<h3>総計 <%=@sum %></h3>
+<% if @orderlist.errors.any? %>
+
+        <%= @orderlist.errors.count %>件のエラーが発生しました
+            <% @orderlist.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+    <% end %>
+
 <h2>送付先</h2>
 <%=form_for @orderlist,url:user_orderlists_path(user_id:current_user.id,flag: 1) do |f|%>
 <h3>住所</h3>

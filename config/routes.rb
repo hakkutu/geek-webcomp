@@ -39,7 +39,7 @@ devise_for :admins, controllers: {
     resources :artists,only:[:show,:edit,:update,:destroy]
    resources :cds,only:[:index, :new,:create,:show,:edit,:destroy,:update] do
     resources :artist_comments,only:[:create,:destroy]
-    resources :songs,only:[:edit,:destroy]
+    resources :songs,only:[:edit,:destroy,:update]
    resources :discs,only:[:edit,:destroy,:update]
    end
   end
