@@ -1,9 +1,7 @@
-<h1>Editing song</h1>
-<%=form_for(@song,url:edit_artists_cd_song_path(@song.id)) do |f| %>
-<h1>song名</h1>
+<h2>Editing song</h2>
+<%=form_for(@song,url:artists_cd_song_path(id: @song.id,cd_id: @song.disc.cd_id)) do |f| %>
+<h3>song名</h3>
 <%=f.text_field :song_name %><br>
-<h1>song個数</h1>
-<%=f.number_field :song_number %><br>
 <h1></h1>
 <%=f.submit "Update Book" %>
 <% end %>

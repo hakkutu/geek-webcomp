@@ -1,20 +1,42 @@
 <div class="cds">
-	<%=form_for(@cd,url:artists_cd_path(@cd.id))do |f| %>
-	<h2>CD情報</h2>
-	<h2>CDの名前</h2>
-	<%=f.text_field :cd_name %>
-	<h2>ジャンル</h2>
-	<%=f.text_field :genre %>
-	<h2>ジャケットの写真</h2>
-	<%=f.attachment_field :jacket %>
-	<h2>値段</h2>
-	<%=f.text_field :price %>
-	<h2>レーベル名</h2>
-	<%=f.text_field :label %>
-	<h2>個数</h2>
-	<%=f.number_field :stock%>
-	<h1>Disc情報</h1>
-	<h2><%=f.submit %></h2>
+	<%#=fields_for :cds do |f| %>
+	<%=form_for @cd,url:artists_cd_path(@cd.id) do |f| %>
+	 <% if @cd.errors.any? %>
+        <%= @cd.errors.count %>件のエラーが発生しました
+        <% @cd.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+    <% end %>
+
+	<h3>CD情報</h3>
+	<table>
+		<tr>
+			<th>CD名</th>
+			<th>ジャンル</th>
+			<th>ジャケット写真</th>
+			<th>値段</th>
+			<th>レーベル名</th>
+			<th>個数</th>
+		</tr>
+		<tr>
+
+		<td><%=f.text_field :cd_name,class:"form-control" %></td>
+		<td><%=f.text_field :genre,class:"form-control" %></td>
+		<td><%=f.attachment_field :jacket %></td>
+		<td><%=f.text_field :price,class:"form-control" %></td>
+		<td><%=f.text_field :label,class:"form-control" %></td>
+		<td><%=f.number_field :stock,class:"form-control"%></td>
+	</tr>
+	</table>
+
+	<h3>Disc情報</h3>
+	<div class="discs">
+	<%=f.fields_for :discs do |disc|%>
+		<div><%= render "disc_fields", f: disc %></div>
+	<%end%>
+	</div>
+	<h2></h2>
+	<div><%= link_to_add_association "discを追加",f,:discs,class:"btn btn-default" %></div>
+	<h2><%=f.submit "create cd" %></h2>
 	<% end %>
 </div>
-
