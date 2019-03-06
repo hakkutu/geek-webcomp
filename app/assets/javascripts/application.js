@@ -11,9 +11,11 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
+
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
+//= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-sprockets
 //= require_tree ../../../app/assets/javascripts/.
@@ -22,11 +24,13 @@
 //= require cocoon
 
 $(function() {
+    $(document).on('turbolinks:load',function() {
   $('.menu-trigger').on('click', function() {
     $(this).toggleClass('active');
     $('#sp-menu').fadeToggle();
   });
  });
+});
 
 $(function(){
 $(document).on('turbolinks:load',function() {

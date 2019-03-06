@@ -1,4 +1,4 @@
-<h1>CD</h1>
+<h3>CD</h3>
 <table class="table">
 	<tr>
 		<td>ジャケット</td>
@@ -6,51 +6,69 @@
 		<td>値段</td>
 		<td>在庫</td>
 		<td>ジャンル</td>
+		<td>レーベル名</td></td>
 		<td>STATUS</td>
+		<td></td>
+		<td></td>
 	</tr>
 	<tr>
 		<td><%= attachment_image_tag @cd, :jacket, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg" %></td>
 		<td><%=@cd.cd_name %></td>
+		<td><%=@cd.price %></td>
+		<td><%=@cd.stock %></td>
+		<td><%=@cd.genre %></td>
+		<td><%=@cd.label %></td>
+		<td>
+			<% if @cd.status==0 %>
+申請中
+<% else %>
+販売中
+<% end %></td>
+			</td>
 		<%if @cd.artist_id == current_artist.id %>
-				<td><%=link_to "edit",edit_artists_cd_path(@cd.id),class:"btn-sm btn-success edit_book_993"%></td>
-				<td><%=link_to "destroy",artists_cd_path(@cd.id),"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %></td>
+				<td><%=link_to "CD edit",edit_artists_cd_path(@cd.id),class:"btn-sm btn-success edit_book_993"%></td>
+				<td><%=link_to "CD destroy",artists_cd_path(@cd.id),"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %></td>
 				<% end %>
 	</tr>
 </table>
 
-	<table>
+	<table class="table">
 		<tr>
+			<td></td>
+
 			<td>Disc名</td>
-			<td>Discの数</td>
+		
 			<td></td>
 			<td></td>
 		</tr>
+		<% i=0 %>
 		<% @cd.discs.each do |disc| %>
 		<tr>
+			<%i =i+1%>
+			<td>Disc<%=i%></td>
+
 			<td><%=disc.disc_name%></td>
-			<td>
-			<%=disc.disc_number%>
-		</td>
+			
 		<%if @cd.artist_id == current_artist.id %>
-				<td><%=link_to "edit",edit_artists_cd_disc_path(disc.id),class:"btn-sm btn-success edit_book_993"%></td>
-				<td><%=link_to "destroy",artists_cd_disc_path(@cd.id),"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %></td>
+				<td><%=link_to "disc edit",edit_artists_cd_disc_path(id:disc.id,cd_id: @cd.id),class:"btn-sm btn-success edit_book_993"%></td>
+				<td><%=link_to "disc destroy",artists_cd_disc_path(id:disc.id,cd_id: @cd.id),"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %></td>
 				<% end %>
 		</tr>
-		<tr>
-			<td>Song名</td>
-			<td>songの数</td>
-		</tr>
+		<% if disc.songs!=nil %>
+		<%j=0%>
 		<% disc.songs.each do |song| %>
 		<tr>
+			<% j=j+1 %>
+			<td>song<%=j%></td>
 			<td><%=song.song_name%></td>
-			<td>
-			<%=song.song_number%>
-		</td>
-		<%if @cd.artist_id == current_aritist.id %>
-				<td><%=link_to "edit",edit_artists_cd_song_path(song.id),class:"btn-sm btn-success edit_book_993"%></td>
-				<td><%=link_to "destroy",artist_cd_song_path(song.id),"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %></td>
+	
+		<%if @cd.artist_id == current_artist.id %>
+				<td><%=link_to "song edit",edit_artists_cd_song_path(id:song.id,cd_id: @cd.id),class:"btn-sm btn-success edit_book_993"%></td>
+				<td><%=link_to "song destroy",artists_cd_song_path(id:song.id,cd_id: @cd.id),"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %></td>
 				<% end %>
 		</tr>
+		
 		<% end %>
+		<%end%>
 		<% end %>
 	</table>

@@ -38,6 +38,7 @@
 
         <li role="presentation"><%= link_to 'logout', destroy_artist_session_path, method: :delete  %></li>
          </ul>
+         <h3><%= link_to '退会の方はこちら',artists_artist_path(current_artist),method: :delete,"data-confirm"=>"本当に退会してよろしいでしょうか。"%></h3>
     </div>
 <% elsif admin_signed_in? %>
 <div id="sp-menu">
@@ -47,7 +48,7 @@
 
         <li><%= link_to 'Artist', admins_artists_path %></li>
 
-        <li><%= link_to 'CD', root_path%></li>
+        <li><%= link_to 'CD', admins_cds_path%></li>
 
         <li><%= link_to '管理者', admins_admins_path %></li>
         <li><%=link_to 'logout',destroy_admin_session_path,method: :delete%></li>
@@ -67,6 +68,7 @@
 
         <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
       </ul>
+      <h3><%= link_to '退会の方はこちら',user_path(current_user),method: :delete,"data-confirm"=>"本当に退会してよろしいでしょうか。"%></h3>
       <%#=link_to "退会",users_path,"data-confirm"=>"本当に消去しますか",method: :delete,class:"btn-sm btn-danger destroy_book_993" %>
     </div>
     <% else %>

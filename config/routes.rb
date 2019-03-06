@@ -13,8 +13,7 @@ devise_for :artists, controllers: {
 
 devise_for :admins, controllers: {
   sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
+  passwords:     'admins/passwords'
 }
 
   get 'users/unsubscribe'
@@ -39,7 +38,7 @@ devise_for :admins, controllers: {
     resources :artists,only:[:show,:edit,:update,:destroy]
    resources :cds,only:[:index, :new,:create,:show,:edit,:destroy,:update] do
     resources :artist_comments,only:[:create,:destroy]
-    resources :songs,only:[:edit,:destroy]
+    resources :songs,only:[:edit,:destroy,:update]
    resources :discs,only:[:edit,:destroy,:update]
    end
   end
@@ -50,10 +49,11 @@ devise_for :admins, controllers: {
 
    resources :admins,only:[:index]
 
-   resources :cds, only:[:show]
+   
    post "/admins/permit/:id"=>"admins#permit",as:"admin_permit"
-
-   resources :artist_commnets,only:[:index]
-   resources :user_comments,only:[:index]
+  resources :cds, only:[:destroy,:edit,:index,:show,:update] do
+   resources :artist_comments,only:[:destroy]
+   resources :user_comments,only:[:destroy]
+ end
   end
 end

@@ -1,23 +1,49 @@
+	<div class="clearfix">
+	<div class="cd_show clearfix"><%= attachment_image_tag @cd, :jacket, :fill, 500, 500,fallback: "no_image.jpg" %></div>
 
-<%= @cd.cd_name %>
-<%= @cd.price %>
-<%= @cd.price %>
-<%= @cd.artist_id %>
+	<h3>CD名:<%= @cd.cd_name %></h3
+>
+	<h3>値段:<%= @cd.price %>円</h3>
+	<h3>在庫:<%= @cd.stock %>個</h3>
+	<h3>アーティスト名:<%=@cd.artist.name%></h3>
+	<h3>ジャンル:<%=@cd.genre%></h3>
+	<h3>レーベル名:<%=@cd.label%></h3>
+	<% n=1 %>
+	<% a=1 %>
+		<% @cd.discs.each do |disc| %>
+		<h4>disc<%=n%></h4>
+	<%= disc.disc_name %>
+	<% disc.songs.each do |song| %>
+	<h4>song<%=a%></h4>
+	<%= song.song_name %>
+	<%a=a+1 %>
+	<% end %>
+	<%n=n+1 %>
+	<% end %>
+	<br>
+	<%=link_to "CD編集",edit_admins_cd_path(@cd.id),class: "btn btn-info" %>
+	<%=link_to "CD消去",admins_cd_path(@cd.id),method: :delete,class:"btn btn-success","data-confirm"=>"本当に消去しますか" %>
 
-<% @discs.each do |disc| %>
-<%= disc.disc_name %>
-<% @songs.each do |song| %>
-<%= song.song_name %>
 
-<% end %>
-<% end %>
+	<%@comments.each do |comment| %>
+	<div>
+	<%if comment.class==UserComment %>
+	User
+	<%=comment.user.name %>
+	<%= attachment_image_tag comment.user, :image, :fill, 100, 100,fallback: "no_image.jpg" %>
+	<span>:<%=comment.body %></span>
+	<% if admin_signed_in?%>
+	<span><%=link_to "destroy",admins_cd_user_comment_path(cd_id: @cd.id,id: comment.id),method: :delete,"data-confirm"=>"本当に消去しますか" %></span>
+	<%end %>
+	<%elsif comment.class==ArtistComment %>
+	Artist
+	<span><%=comment.artist.name %>
+	<%= attachment_image_tag comment.artist, :image, :fill, 100, 100,fallback: "no_image.jpg" %></span>
+	<span>:<%=comment.body %></span>
+	<% if admin_signed_in?%>
+	<span><%=link_to "destroy",admins_cd_artist_comment_path(cd_id: @cd.id,id: comment.id),method: :delete,"data-confirm"=>"本当に消去しますか"%></span>
+	<%end%>
 
-<% @cd.user_comments.each do |user_comment| %>
 
-<%= user_comment.name %>
-<%= user_comment.body %>
-
-<% end %>
-
-<%= link_to "edit", edit_admins_cd_path(@cd) %>
-<%= link_to "destroy", admins_cd_path(@cd), method: :delete %>
+	<% end %>
+	<%end %>
