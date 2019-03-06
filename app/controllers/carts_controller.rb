@@ -1,6 +1,10 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
   def show
+    @cart.find(params[:id])
+    if @cart.user!=current_user
+     redirect_to root_path
+    end
     @sum=0
     @cart = current_user.cart
     @cart.cart_cds.each do |cart_cd|

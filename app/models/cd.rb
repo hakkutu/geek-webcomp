@@ -12,8 +12,8 @@ class Cd < ApplicationRecord
 	has_many :carts,through: :cart_cds
 	belongs_to :artist
 	attachment :jacket
-
-	validates :genre,:cd_name,:price,:label , presence: true
+	validates :stock,presence: true,numericality: { only_integer: true,greater_than: 0}
+	validates :genre,:cd_name,:price,:label,:status, presence: true
 	has_many :cart_cds, dependent: :destroy
 	has_many :cd_favorites, dependent: :destroy
   accepts_nested_attributes_for :discs, reject_if: :all_blank, allow_destroy: true

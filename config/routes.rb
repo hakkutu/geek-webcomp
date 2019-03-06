@@ -13,8 +13,7 @@ devise_for :artists, controllers: {
 
 devise_for :admins, controllers: {
   sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
+  passwords:     'admins/passwords'
 }
 
   get 'users/unsubscribe'

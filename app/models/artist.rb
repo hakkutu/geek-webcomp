@@ -10,7 +10,7 @@ class Artist < ApplicationRecord
  has_many :cds,dependent: :destroy
  attachment :image
 
-validates :name, :email,  presence: true
+validates :name, :email,:postcode,:address,:phone_number,presence: true
 
   def favorited_by?(user)
 	# 	binding.pry
