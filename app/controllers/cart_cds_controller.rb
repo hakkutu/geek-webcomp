@@ -9,6 +9,7 @@ before_action :authenticate_user!
     redirect_to user_cart_path(current_user,current_user.cart.id)
     else
       render "carts/show"
+    end
   end
 
   def destroy
@@ -18,6 +19,6 @@ before_action :authenticate_user!
   end
   private
   def cart_cd_params
-      params.require(:cart_cd).permit(:cd_id, :number,:cart_id)
-    end
+    params.require(:cart_cd).permit(:cd_id, :number,:cart_id)
+  end
 end
