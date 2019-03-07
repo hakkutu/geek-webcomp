@@ -2,8 +2,16 @@ ja:
   activerecord:
     models:
       cd: CD
+      user: ユーザー
+      artist: アーティスト
+      artist_comments: アーティストコメント
+      user_comments: ユーザーコメント
+      cart_cds: カート内のCD
+      orderlists: オーダーリスト
+      discs: DISC
+      songs: Song
     attributes:
-      CD:
+      cd:
         cd_name: CD名
         jacket_id: ジャケット写真
         price: 値段
@@ -11,11 +19,6 @@ ja:
         label: レーベル名
         stock: 在庫
         status: 状況
-ja:
-  activerecord:
-    models:
-      user: ユーザー
-    attributes:
       user:
         email: Eメール
         name: 名前
@@ -24,6 +27,26 @@ ja:
         address: 住所
         postcode: 郵便番号
         phone_number: 電話番号
+      artist:
+        email: Eメール
+        name: 名前
+        price: 値段
+        password: パスワード
+        address: 住所
+        postcode: 郵便番号
+        phone_number: 電話番号
+        introduction: 自己紹介
+      artist_comments:
+        body: コメント
+      user_comments:
+        body: コメント
+      cart_cds:
+        number: カート内のCDの個数
+      orderlists:
+        address: 住所
+        address-number: 郵便番号
+      discs:
+        disc_name: DISC名
+      songs:
+        song_name: song名
 
-
-        

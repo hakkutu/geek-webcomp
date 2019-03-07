@@ -9,7 +9,9 @@
 	</div>
 	<div class="clearfix kenssaku">
 		<%= form_tag root_path,class:"kennsaku clearfix",:method => 'get' do%>
+
 		<%= text_field_tag :search, '',:placeholder => "CD名で検索..." %>
+
 		<%= submit_tag 'Search',class:"btn btn-lg btn-block btn-base-1 mt-20 clearfix", :name => nil,style:"margin-bottom:30px;" %>
 		<% end %>
 	</div>
