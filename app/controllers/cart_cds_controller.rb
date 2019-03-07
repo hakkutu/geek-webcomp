@@ -8,12 +8,13 @@ before_action :authenticate_user!
     if @cart_cds2.save
     redirect_to user_cart_path(current_user,current_user.cart.id)
     else
+
   	@discs = @cd.discs
     @cart_cds=CartCd.new
   	@user_comment = UserComment.new
   	@comments = (@cd.user_comments.all+@cd.artist_comments.all).sort_by{|comments| comments.created_at}
-      render "cds/show"
-      
+      render "carts/show"
+
     end
   end
 
@@ -35,6 +36,6 @@ before_action :authenticate_user!
   end
   private
   def cart_cd_params
-      params.require(:cart_cd).permit(:cd_id, :number,:cart_id)
-    end
+    params.require(:cart_cd).permit(:cd_id, :number,:cart_id)
+  end
 end

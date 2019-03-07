@@ -3,10 +3,12 @@ class CartsController < ApplicationController
   
   def show
     @cart = Cart.find(params[:id])
+
     @cart.flag=0
 
     if @cart.user_id!=current_user.id
       redirect_to user_cart_path(user_id: current_user.id,id:current_user.cart.id) and return
+
     end
     if @cart.cart_cds.group(:cd_id).having('count(*) >= 2')!=nil?
     	cd_ids=@cart.cart_cds.group(:cd_id).having('count(*) >= 2').pluck(:cd_id)
