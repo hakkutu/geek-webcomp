@@ -15,6 +15,7 @@
     	  end
       if current_user.cart.flag==0
         @cart.flag=1
+        @cart.save
         @orderlist=Orderlist.new
       else
         redirect_to root_path
@@ -22,7 +23,6 @@
       end
     
       def create
-        current_user.cart.flag=params[:flag]
         if current_user.cart.flag==1
           @orderlist = Orderlist.new(orderlist_params)
           cart = Cart.find(current_user.cart.id)
@@ -47,7 +47,11 @@
             orderlist_cd.save
           end
           cart_cds.destroy_all
-        redirect_to root_path
+          cart=current_user.cart
+          cart.flag=2
+          cart.save
+          flash[:notice]="ご購入ありがとうございました。"
+        redirect_to user_path(current_user.id)
         else 
         render :new
       end

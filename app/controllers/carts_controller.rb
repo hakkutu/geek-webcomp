@@ -5,7 +5,7 @@ class CartsController < ApplicationController
     @cart = Cart.find(params[:id])
 
     @cart.flag=0
-
+    @cart.save
     if @cart.user_id!=current_user.id
       redirect_to user_cart_path(user_id: current_user.id,id:current_user.cart.id) and return
 
