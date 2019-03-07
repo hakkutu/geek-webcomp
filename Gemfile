@@ -74,3 +74,4 @@ gem "font-awesome-rails"
 gem 'pry-rails'
   gem 'bootstrap_form'
 gem 'rails-i18n'
+gem 'paranoia'

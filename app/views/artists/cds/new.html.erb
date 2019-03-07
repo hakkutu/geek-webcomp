@@ -24,7 +24,7 @@
 		<td><%=f.attachment_field :jacket %></td>
 		<td><%=f.text_field :price,class:"form-control" %></td>
 		<td><%=f.text_field :label,class:"form-control" %></td>
-		<td><%=f.number_field :stock,class:"form-control"%></td>
+		<td><%=f.number_field :stock,min: 1,class:"form-control"%></td>
 	</tr>
 	</table>
 

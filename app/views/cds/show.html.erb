@@ -1,3 +1,13 @@
+	<% if @cart_cds2!=nil %>
+
+<% if @cart_cds2.errors.any? %>
+
+        <%= @cart_cds2.errors.count %>件のエラーが発生しました
+        <% @cart_cds2.errors.full_messages.each do |message| %>
+            <%= message %><br>
+        <% end %>
+    <% end %>
+<%end%>
 	<div class="clearfix">
 	<div class="cd_show clearfix"><%= attachment_image_tag @cd, :jacket, :fill, 500, 500,fallback: "no_image.jpg" %></div>
 	<div class="cd_show clearfix">
@@ -22,10 +32,24 @@
 	<% end %>
 	 <% if user_signed_in? %>
 	 <div class="cart">
+	<%if current_user.cart.cart_cds.find_by(cd_id: @cd.id).nil? %>
 	<%=form_for @cart_cds,url:user_cart_cart_cds_path(cart_id:current_user.cart.id,cd_id: @cd.id,user_id: current_user.id) do |f|%>
-	<%=f.number_field :number,min: 0,max: @cd.stock %>
+	
+	<%=f.number_field :number,min: 1,max: @cd.stock %>
 	<%=f.submit "カートに追加"%>
 	<% end %>
+	<%else%>
+	 <% if @cd.stock-current_user.cart.cart_cds.find_by(cd_id: @cd.id).number>=0 %>
+	<%=form_for @cart_cds,url:user_cart_cart_cds_path(cart_id:current_user.cart.id,cd_id: @cd.id,user_id: current_user.id) do |f|%>
+	
+	<%=f.number_field :number,min: 1,max: @cd.stock %>
+	<%=f.submit "カートに追加"%>
+	<% end %>
+	
+	<%else%>
+	<h2>sold out</h2>
+	<%end%><br>
+<%end%>
 </div>
 	<%end%></div>
 	</div>

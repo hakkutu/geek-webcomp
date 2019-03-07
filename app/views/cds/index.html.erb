@@ -19,12 +19,12 @@
 				<%if cd.status == 1 %>
 					<div class="cd_container col-md-4 clearfix well">
 						<%= attachment_image_tag cd, :jacket, :fill, 200, 200,fallback: "no_image.jpg" %>
-						<h3><%= link_to cd.artist.name, every_artist_path(cd.artist_id) %></h3>
-						<h3>在庫:<%=cd.stock%>個</h3>
+						<h3>Artist名：<%= link_to cd.artist.name, every_artist_path(cd.artist_id) %></h3>
+						<h3>残り:<%=cd.stock%>個</h3>
 						<% if cd.stock==0 %>
 							<h3>sold out</h3>
 						<%else%>
-							<h3><%=link_to cd.cd_name, cd_path(cd)%></h3>
+							<h3>CD名：<%=link_to cd.cd_name, cd_path(cd)%></h3>
 						<%end %>
 						<h3>価格:<%= cd.price %>円</h3>
 					</div>

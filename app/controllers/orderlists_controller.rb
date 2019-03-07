@@ -3,11 +3,18 @@
      def new
        @sum=0
       @cart = current_user.cart
+       @cart.cart_cds.each do |cart_cd|
+    	      if cart_cd.number>cart_cd.cd.stock
+    	        flash[:notice]="すいません、在庫が不足しているため注文で来ません。"
+    	       redirect_to user_cart_path(user_id:current_user.id,id: current_user.cart.id )and return
+    	     end
+    	  end
+       
         @cart.cart_cds.each do |cart_cd|
     	      @sum=@sum+cart_cd.cd.price*cart_cd.number
     	  end
-      current_user.cart.flag=params[:flag]
       if current_user.cart.flag==0
+        @cart.flag=1
         @orderlist=Orderlist.new
       else
         redirect_to root_path
