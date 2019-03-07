@@ -25,8 +25,8 @@ devise_for :admins, controllers: {
     resources :cd_favorites,only:[:create,:destroy]
   end
     resources :users,only:[:edit,:show, :create, :update,:destroy] do
-    resources :carts,only:[:edit,:show,:update] do
-     resources :cart_cds,only:[:new,:create,:destroy]
+    resources :carts,only:[:show] do
+     resources :cart_cds,only:[:new,:create,:destroy,:edit,:update]
     end
     resources :orderlists,only:[:create,:new]
   end
@@ -45,7 +45,7 @@ devise_for :admins, controllers: {
 
   namespace :admins do
    resources :users,only:[:index,:edit,:show, :create, :update,:destroy ]
-   resources :artists,only:[:index,:show,:destroy,:edit,:update,:index]
+   resources :artists,only:[:index,:show,:destroy,:edit,:update]
 
    resources :admins,only:[:index]
 
