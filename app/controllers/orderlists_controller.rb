@@ -14,7 +14,6 @@ class OrderlistsController < ApplicationController
     #発送のステータスは0=未発送,1=発送済み
     orderlist.status = 0
     orderlist.save
-    a=0
     cart_cds.each do |cart_cd|
       orderlist_cd = OrderlistCd.new
       orderlist_cd.cd_id = cart_cd.cd_id
