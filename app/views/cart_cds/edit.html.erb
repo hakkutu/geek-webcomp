@@ -1,0 +1,33 @@
+<%=form_for(@cart_cd,url:user_cart_cart_cd_path(user_id:current_user.id,cart_id:@cart_cd.cart_id,id:@cart_cd.id)) do |f| %>
+<table class="table">
+<thead>
+
+      <th>CD情報</th>
+      <th>CD名</th>
+      <th>アーティスト名</th>
+      <th>枚数</th>
+      <th>値段</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+
+
+      
+      <tr>
+          
+
+        <td><%= attachment_image_tag @cart_cd.cd, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %></td>
+        <td><%= @cart_cd.cd.cd_name %></td>
+        <td><%=@cart_cd.cd.artist.name %></td>
+        
+         <td><%=f.number_field :number,min: 1,max: @cart_cd.cd.stock %>
+        </td>
+        <td><%= @cart_cd.cd.price %></td>
+      </tr>
+    
+  </tbody>
+</table>
+<%=f.submit"編集を保存"%>
+    <%end%>

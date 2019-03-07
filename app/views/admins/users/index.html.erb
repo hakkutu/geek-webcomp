@@ -12,7 +12,7 @@
 	</tr>
 <% @users.each do |user| %>
 <tr>
-<td><%= user.name %></td>
+<td><%=link_to user.name,admins_user_path(user.id) %></td>
 <td><%=user.kano_name %></td>
 <td><%= user.email %></td>
 <td><%= user.address %></td>
