@@ -1,5 +1,5 @@
 
-<h1>マイページ</h1>
+<h2>マイページ</h2>
 <table class="table">
   <%= attachment_image_tag @artist, :image, :fill, 100, 100, fallback: "no_image.jpg" %>
   <tr>
@@ -11,14 +11,27 @@
     <td><%=@artist.introduction %></td>
   </tr>
 </table>
-<% artist.cds.all.each do |cd| %>
-<%=cd.cd_name %>
-<%= attachment_image_tag @artist, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %>
-<% if status==0 %>
+<%= link_to "編集",edit_admins_artist_path(@artist),class:"btn btn-warning"%>
+<%= link_to "消去", admins_artist_path(@artist),method: :delete,class:"btn btn-danger","data-confirm"=>"本当に消去しますか" %>
+<table class="table table-striped">
+	<tr>
+	<td>CD名</td>
+	<td></td>
+	<td>状況</td>
+	<td></td>
+	</tr>
+<% @artist.cds.all.each do |cd| %>
+<tr>
+<th><%=cd.cd_name %></th>
+<th><%= attachment_image_tag cd, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %></th>
+<th><% if cd.status==0 %>
 申請中
 <% else %>
 販売中
 <% end %>
+</th>
+<th><%= link_to "編集", edit_admins_cd_path(cd) %></th>
+<th><%= link_to "消去", admins_cd_path(cd),method: :delete,"data-confirm"=>"本当に消去しますか" %></th>
+</tr>
 <%end%>
-
-<%= link_to "編集する", edit_admins_artists_path(@artist) %>
+</table>

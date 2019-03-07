@@ -31,7 +31,8 @@
       <th>合計金額</th>
       <th>状況</th>
       <th>購入日</th>
-      <th>送付先</th>
+      <th>住所</th>
+      <th>郵便番号</th>
     </tr>
   </thead>
 <% n=1 %>
@@ -52,6 +53,8 @@
 <% end %>
 <td><%=cd_orderlist.created_at%></td>
 <td><%=cd_orderlist.orderlist.address%></td>
+
+<td><%=cd_orderlist.orderlist.address_number%></td>
 </tr>
 <%n=n+1%>
 <% end %>

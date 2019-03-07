@@ -1,8 +1,17 @@
-<%= @cds.each do |cd| %>
-
-<%= attachment_image_tag(cd, :cd, :fill, 100, 100) %>
-
-<%= link_to cd.artist_id , artists_path(cd.artists_id) %><%=link_to cd.cd_name, cd_path(cd)%>
-<%= cd.price %>
-
-<% end %>
+<div class="container clearfix">
+		<div class="row">
+			<% @cds.each do |cd| %>
+					<div class="cd_container col-md-4 clearfix well">
+						<%= attachment_image_tag cd, :jacket, :fill, 200, 200,fallback: "no_image.jpg" %>
+						<h3><%= link_to cd.artist.name,  admins_artist_path(cd.artist_id) %></h3>
+						<h3>在庫:<%=cd.stock%>個</h3>
+						<% if cd.stock==0 %>
+							<h3>sold out</h3>
+						<%else%>
+							<h3><%=link_to cd.cd_name, admins_cd_path(cd)%></h3>
+						<%end %>
+						<h3>価格:<%= cd.price %>円</h3>
+					</div>
+			<% end %>
+		</div>
+	</div>

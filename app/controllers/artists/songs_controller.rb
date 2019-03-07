@@ -1,20 +1,23 @@
 class Artists::SongsController < ApplicationController
 	before_action :authenticate_artist!
 	def destroy
-		song=song.find(params[:id])
+		song=Song.find(params[:id])
 		song.destroy
-		redirect_to artists_cd_path(song.disc_id.cd_id)
+		redirect_to artists_cd_path(song.disc.cd_id)
 	end
 	def edit
-		song=song.find(params[:id])
+		@song=Song.find(params[:id])
+		if @song.disc.cd.artist_id!=current_artist.id
+				artists_cd_path(@disc.cd.id)
+		end
 	end
 	def update
 		song=Song.find(params[:id])
 		song.update(song_params)
-		redirect_to artists_cd_path(song.disc_id.cd_id)
+		redirect_to artists_cd_path(song.disc.cd_id)
 	end
 	private
-	def disc_params
-			params.require(:disc).permit(,:disc_id,:disc_number,:disc_name)
+	def song_params
+			params.require(:song).permit(:disc_id,:song_number,:song_name)
 	end
 end
