@@ -12,7 +12,7 @@ class Cd < ApplicationRecord
 	has_many :carts,through: :cart_cds
 	belongs_to :artist
 	attachment :jacket
-	validates :stock,presence: true,numericality: { only_integer: true,greater_than: 0}
+	validates :stock,presence: true,numericality: { only_integer: true,greater_than_or_equal_to: 0}
 	validates :genre,:cd_name,:price,:label,:status, presence: true
 	has_many :cart_cds, dependent: :destroy
 	has_many :cd_favorites, dependent: :destroy
