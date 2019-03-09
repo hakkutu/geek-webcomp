@@ -50,7 +50,7 @@
           cart=current_user.cart
           cart.flag=2
           cart.save
-          flash[:notice]="ご購入ありがとうございました。"
+          flash[:info]="ご購入ありがとうございました。"
         redirect_to user_path(current_user.id)
         else 
         render :new
