@@ -10,7 +10,7 @@ class CartsController < ApplicationController
       redirect_to user_cart_path(user_id: current_user.id,id:current_user.cart.id) and return
 
     end
-    if @cart.cart_cds.group(:cd_id).having('count(*) >= 2')!=nil?
+    if @cart.cart_cds.group(:cd_id).having('count(*) >= 2') != nil?
     	cd_ids=@cart.cart_cds.group(:cd_id).having('count(*) >= 2').pluck(:cd_id)
     	cd_ids.each do |cd|
     		@cart_cds=@cart.cart_cds.where(cd_id: cd)
@@ -32,3 +32,4 @@ class CartsController < ApplicationController
   end
   
 end
+column "cart_cds.id" must appear in the GROUP BY clause or be used in an aggregate function
