@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   	if @user.id!=current_user.id
   	  redirect_to root_path
   	else
-  	@user_artists = @user.artists
-    @user_orderlists = @user.orderlists
-  end
+      @user_artists = @user.artists
+      @user_orderlists = @user.orderlists
+    end
   end
 
   def update
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     flash[:notice] = "ご利用ありがとうございました"
     redirect_to root_path
   end
-    private
+  private
     def user_params
        params.require(:user).permit(:name,:email,:postcode,:address,:phone_number,:kana_name)
     end
