@@ -32,4 +32,3 @@ class CartsController < ApplicationController
   end
   
 end
-column "cart_cds.id" must appear in the GROUP BY clause or be used in an aggregate function
