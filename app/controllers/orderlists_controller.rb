@@ -5,7 +5,7 @@
       @cart = current_user.cart
        @cart.cart_cds.each do |cart_cd|
     	      if cart_cd.number>cart_cd.cd.stock
-    	        flash[:notice]="すいません、在庫が不足しているため注文で来ません。"
+    	        flash[:info]="すいません、在庫が不足しているため注文で来ません。"
     	       redirect_to user_cart_path(user_id:current_user.id,id: current_user.cart.id )and return
     	     end
     	  end

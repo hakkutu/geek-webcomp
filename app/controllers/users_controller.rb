@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "ご利用ありがとうございました"
+    flash[:info] = "ご利用ありがとうございました"
     redirect_to root_path
   end
   private
