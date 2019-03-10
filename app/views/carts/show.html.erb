@@ -1,5 +1,5 @@
-<% if flash[:notice] %>
-<h3 style="color:red"><%=   flash[:notice]  %></h3>
+<% if flash[:info] %>
+<h3 style="color:red"><%=   flash[:info]  %></h3>
 <%end%>
 <h2>カート</h2>
 <table class="table table-striped">
@@ -17,7 +17,7 @@
   <tbody>
     <%n=1 %>
 
-    <%@cart.cart_cds.each do |cart_cd| %>
+    <%current_user.cart.cart_cds.each do |cart_cd| %>
       <tr>
         <td><%=n%></td>
         <td><%= attachment_image_tag cart_cd.cd, :jacket, :fill, 100, 100, fallback: "no_image.jpg" %></td>

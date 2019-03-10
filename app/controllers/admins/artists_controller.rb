@@ -25,6 +25,6 @@ class Admins::ArtistsController < ApplicationController
   end
   private
     def artist_params
-      params.require(:artist).permit(:iamge, :name,:email,:postcode,:address,:phone_number,:imntroduction)
+      params.require(:artist).permit(:iamge, :name,:email,:postcode,:address,:phone_number,:introduction)
     end
 end
