@@ -42,6 +42,7 @@ class Artists::CdsController < ApplicationController
 			cd.update(cd_params)
 			redirect_to artists_cd_path(cd.id)
 		end
+		
 		private
 		def cd_params
 			params.require(:cd).permit(:id,:artist_id,:genre,:cd_name,:jacket,:price,:label,:stock,:status,:discs_attributes =>[:id,:cd_id,:disc_number,:disc_name,:_destroy,:songs_attributes=> [:id,:disc_id,:song_listen,:song_number,:song_name,:_destroy]])

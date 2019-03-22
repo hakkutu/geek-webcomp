@@ -16,6 +16,10 @@ has_many :cd_favorites, dependent: :destroy
 attachment :image
 
 validates :email, :name, :kano_name, :address,:phone_number,  presence: true
+VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+validates :postcode,format:{with:/\A\d{7}\z/, message: 'ハイフンなしで7桁で入力してください。'}
+validates :phone_number, presence: true,format:{with:/\A\d{10}$|\A\d{11}\z:/, message: 'は電話番号10桁(携帯番号の場合11桁)で入力してください。'}
 validates :kano_name, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
 #userが新規登録する段階でそいつ用のcartができる
 before_create :build_default_cart

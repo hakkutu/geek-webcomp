@@ -72,6 +72,39 @@
 <%end%>
 <h2></h2>
 <%#=link_to "CD申請",new_artists_cd_path,class:"btn btn-success" %>
+<h2>CD状況</h2>
+<table class="table table-bordered">
+	<tr>
+	<th>User名</th>
+	<th>CD</th>
+	<th>状況</th>
+	<th></th>
+</tr>
+<tr>
+<% OrderlistCd.all.each do |orderlist_cd| %>
+<%if orderlist_cd.cd.present?%>
+<% if orderlist_cd.cd.artist_id==current_artist.id%>
+<% cd=orderlist_cd.cd%>
+<td><%=orderlist_cd.orderlist.user.name%></td>
+<td><%=cd.cd_name %></td>
+<% if orderlist_cd.orderlist.status==0 %>
+<td>発送準備中</td>
+<td><%=link_to "発送中に変換",artists_orderlists_permit_path(orderlist_cd.orderlist.id)%></td>
 
+<% elsif orderlist_cd.orderlist.status==1 %>
+<td>発送中</td>
+<td><%=link_to "発送済みに変換",artists_orderlists_permit_path(orderlist_cd.orderlist.id)%></td>
+
+<% elsif orderlist_cd.orderlist.status==2 %>
+
+<td>発送済み</td>
+<%else %>
+<td>エラー</td>
+<% end %>
+<%end%>
+<%end%>
+<%end%>
+</tr>
+</table>
 
 <h1></h1>

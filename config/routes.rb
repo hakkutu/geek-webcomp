@@ -35,12 +35,14 @@ devise_for :admins, controllers: {
     end
 
   namespace :artists do
+       
     resources :artists,only:[:show,:edit,:update,:destroy]
    resources :cds,only:[:index, :new,:create,:show,:edit,:destroy,:update] do
     resources :artist_comments,only:[:create,:destroy]
     resources :songs,only:[:edit,:destroy,:update]
    resources :discs,only:[:edit,:destroy,:update]
    end
+   get "/admins/orderlists/:id"=>"artists#permit",as:"orderlists_permit"
   end
 
   namespace :admins do

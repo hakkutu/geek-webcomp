@@ -46,8 +46,10 @@
 <td><%= cd_orderlist.number %></td>
 <td><%= cd_orderlist.price %></td>
 <% if cd_orderlist.orderlist.status==0 %>
+<td>発送準備中</td>
+<%elsif cd_orderlist.orderlist.status==1%>
 <td>発送中</td>
-<%else%>
+<%elsif cd_orderlist.orderlist.status==2%>
 <td>発送済み</td>
 
 <% end %>
